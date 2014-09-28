@@ -34,6 +34,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'dotenv-rails'
+  
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
 end
 
 group :production do
