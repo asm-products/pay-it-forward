@@ -1,0 +1,32 @@
+<% content_for(:page_title, nil) %>
+
+<div class="vertical-center">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-xs-4">
+            <%= link_to '$10', page_path('authorization'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+          <div class="col-xs-4">
+            <%= link_to '$20', page_path('authorization'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+          <div class="col-xs-4">
+            <%= link_to '$50', page_path('authorization'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-4">
+            <%= link_to '$100', page_path('authorization'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+          <div class="col-xs-8">
+            <%= link_to 'Other amount...', page_path('authorization'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
