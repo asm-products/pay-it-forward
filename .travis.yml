@@ -1,3 +1,11 @@
 language: ruby
 rvm:
-  - 2.1.3
+- 2.1.3
+deploy:
+  provider: heroku
+  strategy: git
+  api_key:
+    secure: QUD98C1XrIARVaOlqzYMP7PY8zX4OuW0BOOQa2cF4UTgi/PFi2EEnwn1odr9zjtnXftvhIAPgTw75DTnS5SoX6HC48xTiTP4TfNK83mM7jrKlXE8DKAIkd8xzRQCPk4DJriI3vljUB406eAabSkG46lzKsZ2qdHno4R/ObgjRT0=
+  app:
+    master: pay-it-forward-stg
+    develop: pay-it-forward-dev
