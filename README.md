@@ -16,10 +16,4 @@ This project's git flow is based on [A successful Git branching model](http://nv
 4. Write tests
   - Will not accept PRs that reduce coverage
 5. Open PR back into develop
-  - Make PR Description links to the Bounty and add a comment to the Bounty linking the PR ake Changes
-  - Use micro commits
-  - Use the imperative, present tense: "change", not "changed" or "changes".
-4. Write tests
-  - Will not accept PRs that reduce coverage
-5. Open PR back into develop
-  - Make PR Description links to the Bounty and add a comment to the Bounty linking the PR 
+  - Make PR Description links to the Bounty and add a comment to the Bounty linking the PR
