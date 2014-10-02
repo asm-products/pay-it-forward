@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pay It Forward</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+html, 
+body {
+	background-color: #1fc5db;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	display: table;
+	width: 100%;
+	height: 100%;
+	height: 100vh;
+	text-align: center;
+	line-height: 1em;
+
+}
+h1 {
+	font-family: 'Lato', serif;
+	font-size: 6.67em;
+	font-weight: 100;
+
+}
+p {
+	font-family: 'Lato', serif;
+	font-size: 3em;
+}
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+#logo {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 62px;
+	height: 60px;
+	background-repeat: no-repeat;
+	background-image: url(data:image/png;base64,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);
+}
+
+/* media queries */
+
+@media screen and (max-width: 650px) {
+	h1 {
+		font-size: 4em;
+	}
+	p {
+		font-size: 1.8em;
+	}
+}
+
+	</style>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<a id="logo" href="https://assembly.com/pay-it-forward" target="_blank"></a>
+		<div class="vertical-center">
+			<h1>pay it forward</h1>
+			<p>a ponzi scheme for social good</p>
+		</div>
+	</div>
+
+</body>
+</html>
