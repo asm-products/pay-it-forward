@@ -1,0 +1,27 @@
+<% content_for(:page_title, nil) %>
+
+<div class="vertical-center">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <ol>
+              <li>Pick a charity and a pledge amount</li>
+              <li>Challenge your friends to pledge</li>
+              <li>If your friends' pledges reach the challange amount, your donation is submitted</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <%= link_to 'Go!', page_path('selection'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
