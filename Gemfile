@@ -35,7 +35,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '0.11.1' # Locked for spring error
 end
 
 group :test do

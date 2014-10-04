@@ -65,9 +65,11 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    dotenv (1.0.0)
-    dotenv-rails (1.0.0)
-      dotenv (= 1.0.0)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -216,7 +218,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   byebug
   coveralls
-  dotenv-rails
+  dotenv-rails (= 0.11.1)
   factory_girl_rails
   flutie
   high_voltage (~> 2.2.1)
