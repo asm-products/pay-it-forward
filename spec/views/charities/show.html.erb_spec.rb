@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "charities/show", :type => :view do
+RSpec.describe 'charities/show', type: :view do
   before(:each) do
     @charity = assign(:charity, Charity.create!(
-      :name => "Name",
-      :description => "MyText",
-      :url => "Url"
+      name: 'Name',
+      description: 'MyText',
+      url: 'Url'
     ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/MyText/)

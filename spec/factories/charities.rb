@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :charity do
-    name "MyString"
-    description "MyText"
-    url "MyString"
+    name 'MyString'
+    description 'MyText'
+    url 'MyString'
   end
 end
