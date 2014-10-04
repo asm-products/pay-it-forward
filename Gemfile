@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'high_voltage', '~> 2.2.1'
+gem 'paperclip'
 
 gem 'coveralls', require: false
 

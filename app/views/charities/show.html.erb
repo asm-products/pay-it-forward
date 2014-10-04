@@ -15,5 +15,10 @@
   <%= @charity.url %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @charity.image.url %>
+</p>
+
 <%= link_to 'Edit', edit_charity_path(@charity) %> |
 <%= link_to 'Back', charities_path %>

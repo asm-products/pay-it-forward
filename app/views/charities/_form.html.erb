@@ -1,4 +1,4 @@
-<%= form_for(@charity) do |f| %>
+<%= form_for @charity, :html => { :multipart => true } do |f| %>
   <% if @charity.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@charity.errors.count, "error") %> prohibited this charity from being saved:</h2>
@@ -22,6 +22,9 @@
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit %>
