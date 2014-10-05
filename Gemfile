@@ -7,8 +7,7 @@ gem 'pg'
 
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'paperclip'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -23,9 +22,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'high_voltage', '~> 2.2.1'
-gem 'paperclip'
 
-gem 'coveralls', require: false
 
 group :development do
   gem 'pry-rails'
@@ -33,6 +30,7 @@ group :development do
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
+  gem 'rubocop'
 end
 
 group :development, :test do
@@ -43,6 +41,7 @@ group :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'coveralls', require: false
 end
 
 group :production do
