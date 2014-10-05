@@ -32,7 +32,8 @@ Services:
   - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`_
   - `AWS_S3_REGION`: _`us-east-1`_
   - `AWS_S3_BUCKET`: _`name`_
-  - `AWS_S3_FQDN`: _`http://localhost`_
+  - `AWS_S3_FQDN`: _`//localhost`_
+  - `SECRET_KEY_BASE`: _`ea1e8ba83614cc8d6140105a42642dc8391d6f2f8...`_
 
 
 ## Contributing

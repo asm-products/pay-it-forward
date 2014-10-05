@@ -4,3 +4,4 @@
 .env
 /coverage
 public/system
+public/assets

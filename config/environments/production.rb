@@ -86,5 +86,8 @@ Rails.application.configure do
     fog_directory: ENV['AWS_S3_BUCKET'],
     fog_host: ENV['AWS_S3_FQDN']
   }
+  
+  config.action_controller.asset_host = ENV['AWS_S3_FQDN']
+  config.assets.prefix = '/assets'
 
 end
