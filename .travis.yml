@@ -1,4 +1,9 @@
 language: ruby
+addons:
+  postgresql: "9.3"
+env: DATABASE_URL=postgresql://postgres:@localhost/travis_ci_test
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 rvm:
 - 2.1.3
 deploy:

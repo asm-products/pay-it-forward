@@ -29,7 +29,7 @@ Rails.application.configure do
   # Do fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
 
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets, 
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
@@ -73,4 +73,21 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+    storage: :fog,
+    fog_credentials: {
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      provider: 'AWS',
+      region: ENV['AWS_S3_REGION'],
+      scheme: 'https'
+    },
+    fog_directory: ENV['AWS_S3_BUCKET'],
+    fog_host: ENV['AWS_S3_FQDN']
+  }
+  
+  config.action_controller.asset_host = ENV['AWS_S3_FQDN']
+  config.assets.prefix = '/assets'
+
 end
