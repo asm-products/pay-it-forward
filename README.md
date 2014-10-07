@@ -4,8 +4,8 @@
 [![Coverage Status](https://img.shields.io/coveralls/asm-products/pay-it-forward.svg)](https://coveralls.io/r/asm-products/pay-it-forward)
 [![Dependency Status](https://img.shields.io/gemnasium/asm-products/pay-it-forward.svg)](https://gemnasium.com/asm-products/pay-it-forward)
 
-## Built With
 
+## Built With
 Open Source:
 - [Ruby on Rails](https://github.com/rails/rails)
 - [PostgreSQL](http://www.postgresql.org/)
@@ -22,6 +22,7 @@ Services:
 - Run `./bin/setup`
   - If you run into any error, configure the `.env` file and retry.
 
+
 #### Environment Variables
 - All
   - `DATABASE_URL`: _`postgresql://username:password@host:port/database`_
@@ -30,13 +31,14 @@ Services:
   - `TRUSTED_IP`: _`172.17.42.1`_ ([Better Errors](https://github.com/charliesome/better_errors): [Optional](https://github.com/charliesome/better_errors#security))
 
 - Production
+  - `APP_HOST`: _`example.com`_
+  - `SECRET_KEY_BASE`: _`ea1e8ba83614cc8d6140105a42642dc8391d6f2f8...`_
   - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAMPLE`_ 
   - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`_
   - `AWS_S3_REGION`: _`us-east-1`_
   - `AWS_S3_BUCKET`: _`name`_
   - `AWS_S3_FQDN`: _`//localhost`_
-  - `SECRET_KEY_BASE`: _`ea1e8ba83614cc8d6140105a42642dc8391d6f2f8...`_
-
+  
 
 ## Contributing
 This project's git flow is based on [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
