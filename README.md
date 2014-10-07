@@ -26,6 +26,8 @@ Services:
 - All
   - `DATABASE_URL`: _`postgresql://username:password@host:port/database`_
 
+- Development
+  - `TRUSTED_IP`: _`172.17.42.1`_ ([Better Errors](https://github.com/charliesome/better_errors): [Optional](https://github.com/charliesome/better_errors#security))
 
 - Production
   - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAMPLE`_ 

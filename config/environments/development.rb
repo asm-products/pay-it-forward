@@ -38,7 +38,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+  # 
+  if !ENV['TRUSTED_IP'].nil? && !ENV['TRUSTED_IP'].empty?
+    BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] 
+  end
   
   if !ENV['AWS_ACCESS_KEY_ID'].nil? && !ENV['AWS_ACCESS_KEY_ID'].empty?
     config.paperclip_defaults = {

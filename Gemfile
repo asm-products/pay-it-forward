@@ -33,6 +33,8 @@ group :development do
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'rubocop'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
