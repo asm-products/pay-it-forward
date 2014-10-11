@@ -33,11 +33,19 @@ Services:
 - Production
   - `APP_HOST`: _`example.com`_
   - `SECRET_KEY_BASE`: _`ea1e8ba83614cc8d6140105a42642dc8391d6f2f8...`_
-  - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAMPLE`_ 
-  - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`_
-  - `AWS_S3_REGION`: _`us-east-1`_
-  - `AWS_S3_BUCKET`: _`name`_
-  - `AWS_S3_FQDN`: _`//localhost`_
+  - `SECRET_KEY_DEVISE`: _`5c38552c853e969d026794035f8f1953032d60bc...`_
+  - `DEVISE_PEPPER`: _`2ae31cfd67205ceba77c4ebe501651de78e68d7d...`_
+  
+  - [Twitter](https://apps.twitter.com/)
+    - `TWITTER_KEY`: _`lkfAc16oTJcbR766zw8GDwMOB`_
+    - `TWITTER_SECRET`: _`NT7WOYKnZplMYQeJ8GjeXHup9sPk5WbR1WZFritdnARP5x7OZj`_
+  
+  - [AWS](http://aws.amazon.com/)
+    - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAMPLE`_ 
+    - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`_
+    - `AWS_S3_REGION`: _`us-east-1`_
+    - `AWS_S3_BUCKET`: _`name`_
+    - `AWS_S3_FQDN`: _`//localhost`_
   
 
 ## Contributing
