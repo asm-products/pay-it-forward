@@ -37,12 +37,16 @@ Services:
   - `DEVISE_PEPPER`: _`2ae31cfd67205ceba77c4ebe501651de78e68d7d...`_
   
   - [Twitter](https://apps.twitter.com/)
-    - `TWITTER_KEY`: _`lkfAc16oTJcbR766zw8GDwMOB`_
-    - `TWITTER_SECRET`: _`NT7WOYKnZplMYQeJ8GjeXHup9sPk5WbR1WZFritdnARP5x7OZj`_
+    - `TWITTER_KEY`: _`lkfAc16oTJcbR766zw8GDw...`_
+    - `TWITTER_SECRET`: _`NT7WOYKnZplMYQeJ8GjeXHup9sPk5WbR1WZFritdnARP5x7...`_
+  
+  - [Facebook]()
+    - `FACEBOOK_KEY`: _`559887567744...`_
+    - `FACEBOOK_SECRET`: _`445a594f443e2f1bcd3025f99e693...`_
   
   - [AWS](http://aws.amazon.com/)
-    - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAMPLE`_ 
-    - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`_
+    - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAM...`_ 
+    - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLE...`_
     - `AWS_S3_REGION`: _`us-east-1`_
     - `AWS_S3_BUCKET`: _`name`_
     - `AWS_S3_FQDN`: _`//localhost`_
