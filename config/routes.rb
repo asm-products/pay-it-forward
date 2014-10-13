@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  resources :users, only: [:show, :edit, :update] do
-    match 'finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup, on: :member
-  end
+  match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :user_finish_signup
+  resources :users, only: [:show]
   
   # root 'charities#index'
   resources :charities

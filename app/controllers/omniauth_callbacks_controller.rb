@@ -2,7 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     class_eval %{
       def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+        @user = User.find_or_create_by_oauth(env["omniauth.auth"], current_user)
 
         if @user.persisted?
           sign_in_and_redirect @user, event: :authentication
@@ -23,7 +23,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if resource.email_verified?
       super resource
     else
-      finish_signup_user_path(resource)
+      user_finish_signup_path
     end
   end
 end

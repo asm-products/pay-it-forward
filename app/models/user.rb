@@ -1,3 +1,13 @@
+# User Signup/Omniauth Flow:
+#   When a user signs up with a omniauth that provides a verified_email that creates an account.
+#   If the user tries to sign in with another source that verifies the same email, that account is
+#   added. If a user signs up with an unverified email, then logins in with a source that verifies
+#   the email, the password is rotated to prevent a situation where the account could of been setup
+#   by someone who didn't own the email, waiting then for the person to signup via omniauth. If the
+#   user is logged in, any omniauth accounts are just added to the account. Verifying the email if
+#   provided. If an omniauth account is present, but a user tries to signup with via an unverified
+#   method, the collision is detected, and they are asked to login/recover the account.
+
 class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
@@ -6,40 +16,47 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :lockable, :timeoutable
 
-  validates  :email, format: { without: TEMP_EMAIL_REGEX, on: :update}
+  has_many :identities
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
-    identity = Identity.find_for_oauth(auth)
+  class << self
+    def find_or_create_by_oauth(auth, signed_in_resource = nil)
+      identity = Identity.find_by_oauth(auth)
 
-    # If a signed_in_resource is provided it always overrides the existing user
-    # to prevent the identity being locked with accidentally created accounts.
-    # Note that this may leave zombie accounts (with no associated identity) which
-    # can be cleaned up at a later date.
-    # TODO: Handle Zombie Accounts
-    user = signed_in_resource ? signed_in_resource : identity.user
-
-    if user.nil?
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
-      user = User.where(email: email).first if email
+      # If a signed_in_resource is provided it always overrides the existing user
+      # to prevent the identity being locked with accidentally created accounts.
+      # Note that this may leave zombie accounts (with no associated identity) which
+      # can be cleaned up at a later date.
+      # TODO: Handle Zombie Accounts
+      user = signed_in_resource ? signed_in_resource : identity.user
 
       # Create the user if it's a new registration
       if user.nil?
-        user = User.new(
-          name: auth.extra.raw_info.name,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0, 20]
-        )
-        user.skip_confirmation!
-        user.save!
-      end
-    end
+        verified_email = auth.info.email if auth.info.email && (auth.info.verified || auth.info.verified_email)
 
-    if identity.user != user
-      identity.user = user
-      identity.save!
+        user = User.find_or_create_by!(email: verified_email) do |new_user|
+          new_user.name = auth.extra.raw_info.name
+          new_user.email = verified_email ? verified_email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+          new_user.password = Devise.friendly_token
+          new_user.skip_confirmation!
+        end
+
+        user.update_attributes!(confirmed_at: DateTime.now, password: Devise.friendly_token) if user.confirmed_at.nil? && user.email == verified_email
+      end
+
+      # Associate the identity with the user if needed
+      identity.update_attributes!(user: user) if identity.user != user
+
+      user
     end
-    user
+  end
+
+  def finish_signup(user_params)
+    # Allow Validation, then bypass it
+    update(user_params) && update_columns(
+      email: user_params[:email],
+      confirmed_at: nil,
+      unconfirmed_email: nil
+      )
   end
 
   def email_verified?
