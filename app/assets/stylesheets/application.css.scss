@@ -44,3 +44,18 @@ header img {
 	text-transform: uppercase;
 	text-shadow: 4px 4px #0092b4;
 }
+
+li img {
+	width: 3em;
+	padding-bottom: 10px;
+	padding-left: 8px;
+	text-align: center;
+}
+li.selected img {
+	width: 3.5em;
+	padding-left: 0;
+}
+
+
+
+
