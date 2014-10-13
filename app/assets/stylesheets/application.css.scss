@@ -37,12 +37,20 @@ header img {
 	width:65px;
 }
 
-.page-header {
+.page-header h1 {
 	font-family: 'Lato', sans-serif;
-	font-size: 9.5em;
+	font-size: 6.25em;
 	color: #1fc5db;
 	text-transform: uppercase;
 	text-shadow: 4px 4px #0092b4;
+}
+.page-header p {
+	font-family: 'Lato', sans-serif;
+	font-weight: 200;
+	font-size: 1.4em;
+	color: #333;
+	padding: 10px;
+	line-height: normal;
 }
 
 li img {
