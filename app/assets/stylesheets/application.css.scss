@@ -147,6 +147,7 @@ figure.effect-zoe p {
 	text-transform: none;
 	font-size: 90%;
 	opacity: 0;
+	text-shadow: 1px 1px 8px white;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	-webkit-transition: opacity 0.35s;
@@ -165,4 +166,3 @@ figure.effect-zoe:hover figcaption {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
-
