@@ -107,3 +107,62 @@ PLEDGE PAGE
 
 
 
+/*=========================
+SELECTION PAGE
+==========================*/
+/*---------------*/
+/***** Zoe *****/
+/* credit codrops */
+/*---------------*/
+
+figure.effect-zoe img {
+	opacity: 1;
+	-webkit-transition: opacity 0.35s;
+	transition: all 0.35s;
+}
+
+figure.effect-zoe:hover img {
+	opacity: 0.5;
+}
+
+figure.effect-zoe figcaption {
+	top: auto;
+	bottom: 0;
+	padding: 1em;
+	height: 3.75em;
+	/*background: #fff;
+*/	color: #3c4a50;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,100%,0);
+	transform: translate3d(0,100%,0);
+	z-index: -1;
+}
+
+figure.effect-zoe p {
+	position: absolute;
+	bottom: 8em;
+	padding: 2em;
+	color: #333;
+	text-transform: none;
+	font-size: 90%;
+	opacity: 0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+}
+
+figure.effect-zoe p span {
+	font-size: 2em;
+}
+
+figure.effect-zoe:hover p {
+	opacity: 1;
+}
+
+figure.effect-zoe:hover figcaption {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
