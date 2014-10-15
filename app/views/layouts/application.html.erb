@@ -12,6 +12,17 @@
 
   </head>
   <body class="<%= body_class %>">
+    <header>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <div class="col-md-1">
+          <%= link_to  image_tag("icon-1.png", :alt => "icon"), page_path('instructions') %>
+        </div>
+      </div>
+    </div>
+  </div>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -1,12 +1,14 @@
-<% content_for(:page_title, nil) %>
+<% content_for(:page_title, 'Charge Your Card') %>
 
 <div class="vertical-center">
   <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="page-header">
+      <h1>Charge</h1>
+      <p>Your card will only be charged once your pledge is met.</p>
+    </div>
 
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-9">
             <form class="form-horizontal" role="form">
               <fieldset>
                 <div class="form-group">
@@ -68,11 +70,21 @@
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-9">
-                    <%= link_to 'Authorize', page_path('challange'), class: "btn btn-success btn-lg", type: "button" %>
+                    <%= link_to 'Authorize', page_path('challenge'), class: "btn btn-success btn-lg", type: "button" %>
                   </div>
                 </div>
               </fieldset>
             </form>
+          </div>
+          <div class="col-xs-1 col-xs-offset-2">
+          <ul>
+              <li><%= image_tag("nav-dot-smiley.png", :alt => "home") %></li>
+              <li><%= image_tag("nav-dot-heart-eyes.png", :alt => "choose") %></li>
+              <li><%= image_tag("nav-dot-sunglasses.png", :alt => "pledge") %></li>
+              <li class="selected"><%= image_tag("nav-dot-smirk.png", :alt => "charge") %></li>
+              <li><%= image_tag("nav-dot-tongue-out.png", :alt => "challenge") %></li>
+              <li><%= image_tag("nav-dot-hands-up.png", :alt => "celebrate") %></li>
+            </ul>
           </div>
         </div>
 

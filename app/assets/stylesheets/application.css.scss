@@ -14,3 +14,155 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/*=========================
+GLOBAL STYLES
+==========================*/
+html,
+body {
+	height:100% !important;
+}
+
+body {
+	background-color: #eae9df;
+	border-top: 5px solid #e17f4d;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+
+}
+
+header {
+	width: 100%;
+	padding: 20px;
+}
+header img {
+	width:65px;
+}
+
+.page-header h1 {
+	font-family: 'Lato', sans-serif;
+	font-size: 6.25em;
+	color: #1fc5db;
+	text-transform: uppercase;
+	text-shadow: 4px 4px #0092b4;
+}
+.page-header p {
+	font-family: 'Lato', sans-serif;
+	font-weight: 200;
+	font-size: 1.4em;
+	color: #333;
+	padding: 10px;
+	line-height: normal;
+}
+
+/* nav-dot styles */
+li img {
+	width: 3em;
+	padding-bottom: 10px;
+	padding-left: 8px;
+	text-align: center;
+}
+li.selected img {
+	width: 3.5em;
+	padding-left: 0;
+}
+
+/*=========================
+INSTRUCTIONS PAGE
+==========================*/
+
+#instructions {
+	padding: 30px;
+}
+#instructions h2 {
+	font-size: 2.8em;
+	padding-bottom: 20px;
+	font-weight: 300;
+}
+#instructions li {
+	line-height: 2;
+	font-size: 1.4em;
+	font-weight: 200;
+}
+#instructions p {
+	line-height: 3;
+	font-size: 1.4em;
+	font-weight: 300;
+	padding-bottom: 30px;
+}
+#instructions .btn {
+	width: 100px;
+}
+
+/*=========================
+PLEDGE PAGE
+==========================*/
+
+#btn-pledge a {
+	margin: 0 10px 20px 0;
+}
+
+
+
+/*=========================
+SELECTION PAGE
+==========================*/
+/*---------------*/
+/***** Zoe *****/
+/* credit codrops */
+/*---------------*/
+
+figure.effect-zoe img {
+	opacity: 1;
+	-webkit-transition: opacity 0.35s;
+	transition: all 0.35s;
+}
+
+figure.effect-zoe:hover img {
+	opacity: 0.5;
+}
+
+figure.effect-zoe figcaption {
+	top: auto;
+	bottom: 0;
+	padding: 1em;
+	height: 3.75em;
+	/*background: #fff;
+*/	color: #3c4a50;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,100%,0);
+	transform: translate3d(0,100%,0);
+	z-index: -1;
+}
+
+figure.effect-zoe p {
+	position: absolute;
+	bottom: 8em;
+	padding: 2em;
+	color: #333;
+	text-transform: none;
+	font-size: 90%;
+	opacity: 0;
+	text-shadow: 1px 1px 8px white;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+}
+
+figure.effect-zoe p span {
+	font-size: 2em;
+}
+
+figure.effect-zoe:hover p {
+	opacity: 1;
+}
+
+figure.effect-zoe:hover figcaption {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}

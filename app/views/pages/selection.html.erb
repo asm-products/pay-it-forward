@@ -1,27 +1,54 @@
-<% content_for(:page_title, nil) %>
+<% content_for(:page_title, 'Choose Your Charity') %>
 
 <div class="vertical-center">
   <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="page-header">
+      <h1>Choose</h1>
+      <p>Which charity would you like to pledge to?</p>
+    </div>
 
         <div class="row">
-          <div class="col-xs-4">
+          <div class="col-xs-12">
+          <div class="col-md-3">
+            <figure class="effect-zoe">
             <%= link_to page_path('pledge') do %>
-              <img src="http://placehold.it/512x512" alt="512x512" class="img-thumbnail">
+              <img src="http://lorempixel.com/output/people-q-c-512-512-3.jpg" alt="512x512" class="img-thumbnail">
+              <figcaption>
+                <p><span>charity:water</span><br><br>Non-profit organization bringing clean and safe drinking water to people in developing nations.</p>
+              </figcaption>
+            </figure>
             <% end %>
           </div>
-          <div class="col-xs-4">
+          <div class="col-md-3">
+            <figure class="effect-zoe">
             <%= link_to page_path('pledge') do %>
-              <img src="http://placehold.it/512x512" alt="512x512" class="img-thumbnail">
+              <img src="http://lorempixel.com/output/people-q-c-512-512-7.jpg" alt="512x51" class="img-thumbnail">
+               <figcaption>
+                <p><span>SF Aids Foundation</span><br><br>Works to end the HIV epiemic in the city where it began, and eventually everywhere.</p>
+              </figcaption>
+            </figure>
+            <% end %>
+           </div>
+          <div class="col-md-3">
+            <figure class="effect-zoe">
+            <%= link_to page_path('pledge') do %>
+              <img src="http://lorempixel.com/output/people-q-c-512-512-10.jpg" alt="512x512" class="img-thumbnail">
+               <figcaption>
+                <p><span>Watsi</span><br><br>A global funding platform for medical treatments. We connect donors with people in need of medical care.</p>
+              </figcaption>
+            </figure>
             <% end %>
           </div>
-          <div class="col-xs-4">
-            <%= link_to page_path('pledge') do %>
-              <img src="http://placehold.it/512x512" alt="512x512" class="img-thumbnail">
-            <% end %>
-          </div>
+          <div class="col-md-1 col-md-offset-2">
+            <ul>
+              <li><%= image_tag("nav-dot-smiley.png", :alt => "home") %></li>
+              <li class="selected"><%= image_tag("nav-dot-heart-eyes.png", :alt => "choose") %></li>
+              <li><%= image_tag("nav-dot-sunglasses.png", :alt => "pledge") %></li>
+              <li><%= image_tag("nav-dot-smirk.png", :alt => "charge") %></li>
+              <li><%= image_tag("nav-dot-tongue-out.png", :alt => "challenge") %></li>
+              <li><%= image_tag("nav-dot-hands-up.png", :alt => "celebrate") %></li>
         </div>
+      </div>
 
       </div>
     </div>
