@@ -50,7 +50,7 @@ Services:
     - `AWS_S3_REGION`: _`us-east-1`_
     - `AWS_S3_BUCKET`: _`name`_
     - `AWS_S3_FQDN`: _`//localhost`_
-  
+
 
 ## Contributing
 This project's git flow is based on [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
@@ -65,3 +65,4 @@ This project's git flow is based on [A successful Git branching model](http://nv
   - Will not accept PRs that reduce coverage
 5. Open PR back into develop
   - Make PR Description links to the Bounty and add a comment to the Bounty linking the PR
+  - Add accompanying images for UI changes

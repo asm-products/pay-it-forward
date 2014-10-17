@@ -8,6 +8,13 @@ RSpec.describe CharitiesController, type: :controller do
 
   let(:valid_session) { {} }
 
+  before(:each) do
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability).and_return(@ability)
+    @ability.can :manage, :all
+  end
+  
   describe 'GET index' do
     it 'assigns all charities as @charities' do
       charity = Charity.create! valid_attributes
