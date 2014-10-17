@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :user_finish_signup
   resources :users, only: [:show]
   
-  # root 'charities#index'
   resources :charities
+  get "/pages/*id" => 'pages#show', as: :page, format: false
+  root to: 'pages#show', id: 'instructions'
 end
