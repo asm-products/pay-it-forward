@@ -14,7 +14,7 @@ RSpec.describe CharitiesController, type: :controller do
     allow(controller).to receive(:current_ability).and_return(@ability)
     @ability.can :manage, :all
   end
-  
+
   describe 'GET index' do
     it 'assigns all charities as @charities' do
       charity = Charity.create! valid_attributes

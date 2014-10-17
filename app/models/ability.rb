@@ -3,6 +3,6 @@ class Ability
 
   def initialize(user)
     return unless user
-    can :manage, User, :id => user.id
+    can :manage, User, id: user.id
   end
 end
