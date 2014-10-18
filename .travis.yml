@@ -1,16 +1,16 @@
 language: ruby
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 env: DATABASE_URL=postgresql://postgres:@localhost/travis_ci_test
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+- psql -c 'create database travis_ci_test;' -U postgres
 rvm:
 - 2.1.3
 deploy:
   provider: heroku
   strategy: git
   api_key:
-    secure: QUD98C1XrIARVaOlqzYMP7PY8zX4OuW0BOOQa2cF4UTgi/PFi2EEnwn1odr9zjtnXftvhIAPgTw75DTnS5SoX6HC48xTiTP4TfNK83mM7jrKlXE8DKAIkd8xzRQCPk4DJriI3vljUB406eAabSkG46lzKsZ2qdHno4R/ObgjRT0=
+    secure: HAxxBj+148meraEjQ4n3nTJ2674LCeNnZaiye2lyGA1k3lCJCAjKYIaazvillO+wCpdajnX1giV9U0Y7tyum31QR9SjbdioAPwwZmMYtU4jKLJYjwQvmhhC4x/k4mytvGsugY0mdkpbahonkpFpY4JFHox9aF0h1N4h6yTSd77s=
   app:
     master: pay-it-forward-stg
     develop: pay-it-forward-dev
