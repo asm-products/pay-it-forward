@@ -49,7 +49,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'coveralls', require: false
