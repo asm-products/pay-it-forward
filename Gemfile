@@ -1,35 +1,44 @@
 source 'https://rubygems.org'
 ruby '2.1.3'
 
+# Core
 gem 'rails', '4.2.0.beta1'
 gem 'puma'
 gem 'pg'
 
+# Assets
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'jquery-rails'
+
 gem 'paperclip'
 gem 'fog'
 gem 'asset_sync'
 
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
-gem 'flutie'
-
-gem 'jquery-rails'
+# Extensions
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 gem 'rails-html-sanitizer', '~> 1.0'
+
+# Helpers
+gem 'flutie'
+gem 'jbuilder', '~> 2.0'
 gem 'high_voltage', '~> 2.2.1'
 
+# Users
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'cancancan'
 
 group :development do
   gem 'pry-rails'
-  gem 'byebug'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   gem 'pry-byebug'
+  gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'rubocop'
@@ -38,11 +47,11 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails', '0.11.1' # Locked for spring error
+  gem 'dotenv-rails'
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'coveralls', require: false
