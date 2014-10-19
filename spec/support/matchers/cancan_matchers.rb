@@ -35,7 +35,7 @@ RSpec::Matchers.define :have_abilities do |actions, obj|
   failure_message do |_ability|
     obj_name = @obj.class.name
     obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].include?(@obj.class)
-    message = (
+    (
       "expected user to have abilities: #{@expected_hash} for " \
       "#{obj_name}, but got #{@actual_hash}"
     )
@@ -69,7 +69,7 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
   failure_message do |_ability|
     obj_name = @obj.class.name
     obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].include?(@obj.class)
-    message = (
+    (
       "expected user NOT to have abilities #{@expected_hash.keys.join(', ')} for " \
       "#{obj_name}, but got #{@actual_hash}"
     )
@@ -92,50 +92,7 @@ module HaveAbilitiesMixin
   end
 
   def verify_ability_type(ability)
-    unless ability.class.ancestors.include?(CanCan::Ability)
-      fail TypeError.new("subject must mixin CanCan::Ability, got a #{ability.class.name} class.")
-    end
+    return if ability.class.ancestors.include?(CanCan::Ability)
+    fail TypeError.new("subject must mixin CanCan::Ability, got a #{ability.class.name} class.")
   end
 end
-
-#class TestingAbility
-#  include CanCan::Ability
-#
-#  def initialize(_user)
-#    can :read, User
-#    can :comment, User
-#    cannot :destroy, User
-#  end
-#end
-
-#describe 'CanCan custom RSpec::Matchers' do
-#  subject(:ability) { TestingAbility.new(user) }
-#  let(:user) { create(:user) }
-#  let(:other_user) { create(:user) }
-#
-#  it { should have_abilities(:read, other_user) }
-#  it { should have_abilities(:comment, other_user) }
-#  it { should have_abilities({ destroy: false }, other_user) }
-#  it { should have_abilities([:read], other_user) }
-#  it { should have_abilities([:read, :comment], other_user) }
-#  it { should have_abilities({ read: true }, other_user) }
-#  it { should have_abilities({ read: true, comment: true }, other_user) }
-#  it { should have_abilities({ read: true, destroy: false }, other_user) }
-#  it { should have_abilities({ read: true, comment: true, destroy: false }, other_user) }
-#  it { should not_have_abilities(:destroy, other_user) }
-#  it { should not_have_abilities([:destroy], other_user) }
-#
-#  # These should all expect failure intentionally, to catch false positives.
-#  let(:expected_error) { RSpec::Expectations::ExpectationNotMetError }
-#  it { expect { should have_abilities(:destroy, other_user) }.to raise_error(expected_error) }
-#  it { expect { should have_abilities([:destroy], other_user) }.to raise_error(expected_error) }
-#  it { expect { should have_abilities([:read, :destroy], other_user) }.to raise_error(expected_error) }
-#  it { expect { should have_abilities({ read: true, destroy: true }, other_user) }.to raise_error(expected_error) }
-#  it { expect { should have_abilities({ read: false, destroy: false }, other_user) }.to raise_error(expected_error) }
-#  it { expect { should have_abilities({ read: false, destroy: true }, other_user) }.to raise_error(expected_error) }
-#  it { expect { should not_have_abilities([:read, :destroy], other_user) }.to raise_error(expected_error) }
-#  it { expect { should not_have_abilities({ destroy: false }, other_user) }.to raise_error(ArgumentError) }
-#
-#  # Never use should_not with have_abilities.
-#end
-
