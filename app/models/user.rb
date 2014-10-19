@@ -4,7 +4,7 @@
 #   added. If a user signs up with an unverified email, then logins in with a source that verifies
 #   the email, the password is rotated to prevent a situation where the account could of been setup
 #   by someone who didn't own the email, waiting then for the person to signup via omniauth. If the
-#   user is logged in, any omniauth accounts are just added to the account. Verifying the email if
+#   user is logged in, any omniauth accounts are just added to the account. Confirming the email if
 #   provided. If an omniauth account is present, but a user tries to signup with via an unverified
 #   method, the collision is detected, and they are asked to login/recover the account.
 
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
   def finish_signup(user_params)
     # Allow Validation, then bypass it
-    update(user_params) && update_columns(
+    update!(user_params) && update_columns(
       email: user_params[:email],
       confirmed_at: nil,
       unconfirmed_email: nil
