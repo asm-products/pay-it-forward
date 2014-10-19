@@ -146,6 +146,7 @@ GEM
     hike (1.2.3)
     i18n (0.7.0.beta1)
     inflecto (0.0.2)
+    interception (0.5)
     ipaddress (0.8.0)
     jbuilder (2.2.2)
       activesupport (>= 3.0.0, < 5)
@@ -215,6 +216,12 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    pry-rescue (1.4.1)
+      interception (>= 0.5)
+      pry
+    pry-stack_explorer (0.4.9.1)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     puma (2.9.1)
       rack (>= 1.1, < 2.0)
     rack (1.6.0.beta)
@@ -355,6 +362,8 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
+  pry-rescue
+  pry-stack_explorer
   puma
   rack-timeout
   rails (= 4.2.0.beta1)

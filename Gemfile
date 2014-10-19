@@ -35,8 +35,10 @@ gem 'cancancan'
 
 group :development do
   gem 'pry-rails'
-  gem 'byebug'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   gem 'pry-byebug'
+  gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'rubocop'
