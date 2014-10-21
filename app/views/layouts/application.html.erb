@@ -26,7 +26,11 @@
             <div class="col-md-1">
               <%= link_to  image_tag("icon-flat.png", :alt => "icon"), page_path('instructions') %>
             </div>
+            <div class="col-md-8">
+              <p class="header-title">Pay It Forward</p>
           </div>
+          <div class="header-signup col-md-3">
+            <%= link_to 'Sign Up / Log In', page_path('../users/sign_up'), class: "btn btn-default btn-sm btn-block", type: "button" %>
         </div>
       </div>
     </header>

@@ -50,6 +50,17 @@ header {
 header img {
 	width:65px;
 }
+.header-title {
+	font-size: 2em;
+	font-family: 'Lato', sans-serif;
+	padding: 16px 0;
+	font-style: italic;
+	color: #555;
+	opacity: 0.8;
+}
+.header-signup {
+	padding: 16px 0;
+}
 
 .page-header {
 	border: none;
