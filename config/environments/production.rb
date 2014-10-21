@@ -89,6 +89,6 @@ Rails.application.configure do
   }
   
   config.action_controller.asset_host = ENV['AWS_S3_FQDN']
-  config.assets.prefix = '/assets'
+  config.assets.prefix = ENV['ASSETS_DIRECTORY']
 
 end

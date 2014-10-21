@@ -50,6 +50,7 @@ Services:
     - `AWS_S3_REGION`: _`us-east-1`_
     - `AWS_S3_BUCKET`: _`name`_
     - `AWS_S3_FQDN`: _`//localhost`_
+    - `ASSETS_DIRECTORY`: _`/development/assets`_
 
 
 ## Contributing
