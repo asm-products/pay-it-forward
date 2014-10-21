@@ -2,21 +2,25 @@
 
 <div class="vertical-center">
   <div class="container">
-    <div class="page-header">
+      <div class="row">
+      <div class="page-header">
+    <div class=" col-xs-12">
       <h1>Pay It Forward</h1>
-      <p>A Ponzi Scheme For Social Good</p>
+      <p>A Ponzi Scheme for Social Good</p>
     </div>
+</div>
+</div>
 
         <div class="row">
           <div id="instructions" class="col-xs-12">
             <h2>Here's how it works:</h2>
             <ol>
-              <li>1. Pick a charity and a pledge amount</li>
-              <li>2. Challenge your friends to pledge</li>
-              <li>3. If your friends' pledges reach the challange amount, your donation is submitted!</li>
+              <li><span>1</span> Pick a charity and a pledge amount</li>
+              <li><span>2</span> Challenge your friends to pledge</li>
+              <li><span>3</span> If your friends' pledges reach the challange amount, your donation is submitted!</li>
             </ol>
             <p>Easy, no? Let's do this!</p>
-            <%= link_to 'Go!', page_path('selection'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
+            <%= link_to 'Go!', page_path('selection'), class: "btn btn-success btn-lg btn-block", type: "button" %>
           </div>
 </div>
   
