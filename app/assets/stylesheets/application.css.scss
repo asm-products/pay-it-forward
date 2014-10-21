@@ -28,11 +28,12 @@ body {
 
 body {
 	background-color: #ecf0f1;
+	background-image: linear-gradient(to bottom right, #fff,#ffe);
 	border-top: 5px solid #e67e22;
 	font-family: 'Roboto', sans-serif;
 	font-size: 1em;
-
 }
+
 
 header {
 	width: 100%;
@@ -61,7 +62,7 @@ header img {
 /* nav-dot styles */
 li img {
 	width: 3em;
-	padding-bottom: 10px;
+	padding-bottom: 20px;
 	padding-left: 8px;
 	text-align: center;
 }
