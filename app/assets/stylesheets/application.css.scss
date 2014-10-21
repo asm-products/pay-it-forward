@@ -201,10 +201,15 @@ CHALLENGE PAGE
 
 
 /*=========================
-SIGN_UP PAGE
+USER PAGES
 ==========================*/
 
 .form-group label {
 	color: #555;
 	padding-bottom: 5px;
+}
+
+.user-page h1 {
+	font-size: 3.25em;
+	text-shadow: 2px 2px #0092b4;
 }
