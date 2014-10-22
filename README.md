@@ -1,7 +1,7 @@
 # Pay it Forward
-[![Build Status](https://img.shields.io/travis/asm-products/pay-it-forward.svg)](https://travis-ci.org/asm-products/pay-it-forward)
+[![Build Status](https://img.shields.io/travis/asm-products/pay-it-forward/develop.svg)](https://travis-ci.org/asm-products/pay-it-forward)
 [![Code Climate](https://img.shields.io/codeclimate/github/asm-products/pay-it-forward.svg)](https://codeclimate.com/github/asm-products/pay-it-forward)
-[![Coverage Status](https://img.shields.io/coveralls/asm-products/pay-it-forward.svg)](https://coveralls.io/r/asm-products/pay-it-forward)
+[![Coverage Status](https://img.shields.io/coveralls/asm-products/pay-it-forward/develop.svg)](https://coveralls.io/r/asm-products/pay-it-forward?branch=develop)
 [![Dependency Status](https://img.shields.io/gemnasium/asm-products/pay-it-forward.svg)](https://gemnasium.com/asm-products/pay-it-forward)
 [![Security Status](https://hakiri.io/github/asm-products/pay-it-forward/develop.svg)](https://hakiri.io/github/asm-products/pay-it-forward/develop)
 
