@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :user_finish_signup
+  match 'users/finish_sign_up' => 'users#finish_sign_up', via: [:get, :patch], :as => :user_finish_sign_up
   resources :users, only: [:show]
   
   resources :charities
