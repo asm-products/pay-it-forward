@@ -66,18 +66,18 @@ RSpec.describe User, type: :model do
 
   it 'does confirm an unconfirm email if omniauth source with verified_email is added' do
     user = User.find_or_create_by_oauth(auth_twitter)
-    user.finish_signup(email: 'mail@example.com')
+    user.finish_sign_up(email: 'mail@example.com')
     expect(user.confirmed_at).to be nil
 
     user = User.find_or_create_by_oauth(auth_facebook)
     expect(user.email_verified?).to_not be nil
   end
 
-  # finish_signup
+  # finish_sign_up
   it "does update user's email" do
     user_params = { email: 'testing@test.com' }
 
-    user.finish_signup(user_params)
+    user.finish_sign_up(user_params)
     user.reload
 
     expect(user.email).to eq user_params[:email]
@@ -87,14 +87,14 @@ RSpec.describe User, type: :model do
     user_params = { email: 'testing' }
 
     expect do
-      user.finish_signup(user_params)
+      user.finish_sign_up(user_params)
     end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Email is invalid')
   end
 
   it 'does update user to act as devise sign up' do
     user_params = { email: 'testing@test.com' }
 
-    user.finish_signup(user_params)
+    user.finish_sign_up(user_params)
     user.reload
 
     expect(user.confirmed_at).to be nil

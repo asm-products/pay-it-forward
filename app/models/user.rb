@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def finish_signup(user_params)
+  def finish_sign_up(user_params)
     # Allow Validation, then bypass it
     update!(user_params) && update_columns(
       email: user_params[:email],

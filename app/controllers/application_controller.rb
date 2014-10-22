@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
   # before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
   def ensure_signup_complete
     # Ensure we don't go into an infinite loop
-    return if action_name == 'finish_signup'
+    return if action_name == 'finish_sign_up'
 
-    redirect_to finish_signup_path(current_user) if current_user && !current_user.email_verified?
+    redirect_to finish_sign_up_path(current_user) if current_user && !current_user.email_verified?
   end
 
   def configure_permitted_parameters

@@ -2,17 +2,17 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_user, only: [:show]
-  before_action :set_current_user, only: [:finish_signup]
+  before_action :set_current_user, only: [:finish_sign_up]
 
   # GET/PATCH /users/:id
   def show
   end
 
-  # GET/PATCH /users/finish_signup
-  def finish_signup
+  # GET/PATCH /users/finish_sign_up
+  def finish_sign_up
     # TODO: Redirect if no current_user, or sign up finished
     respond_to do |format|
-      if request.patch? && @user.finish_signup(user_params)
+      if request.patch? && @user.finish_sign_up(user_params)
         format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
       else
         format.html

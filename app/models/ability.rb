@@ -6,6 +6,6 @@ class Ability
 
     return unless user
 
-    can :update, User, id: user.id
+    can [:update, :finish_sign_up], User, id: user.id
   end
 end

@@ -9,8 +9,8 @@ RSpec.describe Ability, type: :model do
   it { should have_abilities(:read, user) }
   it { should have_abilities(:read, other_user) }
 
-  it { should have_abilities(:update, user) }
-  it { should not_have_abilities(:update, other_user) }
+  it { should have_abilities([:update, :finish_sign_up], user) }
+  it { should not_have_abilities([:update, :finish_sign_up], other_user) }
 
   it { should not_have_abilities(:create, User) }
   it { should not_have_abilities(:create, User) }
