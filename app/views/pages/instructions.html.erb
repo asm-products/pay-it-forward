@@ -3,31 +3,24 @@
 <div class="vertical-center">
   <div class="container">
     <div class="page-header">
+      <div class="row">
+    <div class=" col-xs-12">
       <h1>Pay It Forward</h1>
-      <p>A Ponzi Scheme For Social Good</p>
+      <p>A Ponzi Scheme for Social Good</p>
     </div>
+</div>
+</div>
 
         <div class="row">
-          <div id="instructions" class="col-xs-9 panel panel-body">
+          <div id="instructions" class="col-xs-12">
             <h2>Here's how it works:</h2>
             <ol>
-              <li>1. Pick a charity and a pledge amount</li>
-              <li>2. Challenge your friends to pledge</li>
-              <li>3. If your friends' pledges reach the challange amount, your donation is submitted!</li>
+              <li><span>1</span> Pick a charity and a pledge amount</li>
+              <li><span>2</span> Challenge your friends to pledge</li>
+              <li><span>3</span> If your friends' pledges reach the challenge amount, your donation is submitted!</li>
             </ol>
             <p>Easy, no? Let's do this!</p>
-            <%= link_to 'Go!', page_path('selection'), class: "btn btn-primary btn-lg btn-block", type: "button" %>
-          </div>
-        
-        <div class="col-xs-1 col-xs-offset-2">
-          <ul>
-              <li class="selected"><%= image_tag("nav-dot-smiley.png", :alt => "home") %></li>
-              <li><%= image_tag("nav-dot-heart-eyes.png", :alt => "choose") %></li>
-              <li><%= image_tag("nav-dot-sunglasses.png", :alt => "pledge") %></li>
-              <li><%= image_tag("nav-dot-smirk.png", :alt => "charge") %></li>
-              <li><%= image_tag("nav-dot-tongue-out.png", :alt => "challenge") %></li>
-              <li><%= image_tag("nav-dot-hands-up.png", :alt => "celebrate") %></li>
-            </ul>
+            <%= link_to 'Go!', page_path('selection'), class: "btn btn-success btn-lg btn-block", type: "button" %>
           </div>
 </div>
   

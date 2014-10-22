@@ -3,31 +3,36 @@
 <div class="vertical-center">
   <div class="container">
     <div class="page-header">
+      <div class="row">
+    <div class=" col-xs-9">
       <h1>Challenge</h1>
-      <p>The fun part! Challenge your friends to pledge!</p>
+      <p>The fun part! Challenge your friends to pledge.</p>
     </div>
+    <div class="counter col-xs-1 col-xs-offset-2">
+      <p>4/5</p>
+    </div>
+</div>
+</div>
 
         <div class="row">
-          <div class="col-xs-9">
-            <ul>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Google+</li>
-              <li>Email</li>
-              <li>SMS</li>
-            </ul>
+          <div class="col-xs-12">
+          <div class="btn-challenge col-xs-2">
+            <%= image_tag("facebook.png", :alt => "Challenge with Facebook") %>
+            </div>
+            <div class="btn-challenge col-xs-2">
+            <%= image_tag("twitter.png", :alt => "Challenge with Twitter") %>
+            </div>
+            <div class="btn-challenge col-xs-2">
+            <%= image_tag("google.png", :alt => "Challenge with Google Plus") %>
+            </div>
+            <div class="btn-challenge col-xs-2">
+            <%= image_tag("email.png", :alt => "Challenge with Email") %>
+            </div>
+            <div class="btn-challenge col-xs-2">
+            <%= image_tag("sms.png", :alt => "Challenge with SMS") %>
+            </div>
+            </div>
           </div>
-          <div class="col-xs-1 col-xs-offset-2">
-          <ul>
-              <li><%= image_tag("nav-dot-smiley.png", :alt => "home") %></li>
-              <li><%= image_tag("nav-dot-heart-eyes.png", :alt => "choose") %></li>
-              <li><%= image_tag("nav-dot-sunglasses.png", :alt => "pledge") %></li>
-              <li><%= image_tag("nav-dot-smirk.png", :alt => "charge") %></li>
-              <li class="selected"><%= image_tag("nav-dot-tongue-out.png", :alt => "challenge") %></li>
-              <li><%= image_tag("nav-dot-hands-up.png", :alt => "celebrate") %></li>
-            </ul>
-          </div>
-        </div>
   
 
       </div>

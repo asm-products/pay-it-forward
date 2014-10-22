@@ -15,6 +15,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 /* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
@@ -24,15 +25,23 @@ GLOBAL STYLES
 html,
 body {
 	height:100% !important;
+	-webkit-font-smoothing: antialiased !important;
 }
 
 body {
-	background-color: #eae9df;
-	border-top: 5px solid #e17f4d;
+	background-color: #fff	;
+	border-top: 5px solid #e67e22;
 	font-family: 'Roboto', sans-serif;
 	font-size: 1em;
-
+	background-color: #ffffff;
+	background-image: url(http://www.transparenttextures.com/patterns/blizzard.png);
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+
+.container {
+	width: 960px;
+}
+
 
 header {
 	width: 100%;
@@ -41,11 +50,27 @@ header {
 header img {
 	width:65px;
 }
+.header-title {
+	font-size: 2em;
+	font-family: 'Lato', sans-serif;
+	padding: 16px 0;
+	font-style: italic;
+	color: #555;
+	opacity: 0.8;
+}
+.header-signup {
+	padding: 16px 0;
+}
+
+.page-header {
+	border: none;
+	margin-bottom: 20px;
+}
 
 .page-header h1 {
 	font-family: 'Lato', sans-serif;
 	font-size: 6.25em;
-	color: #1fc5db;
+	color:  #5ac8fa;
 	text-transform: uppercase;
 	text-shadow: 4px 4px #0092b4;
 }
@@ -54,14 +79,18 @@ header img {
 	font-weight: 200;
 	font-size: 1.4em;
 	color: #333;
-	padding: 10px;
+	padding: 10px 0 20px 10px;
 	line-height: normal;
+}
+.counter p {
+	font-size: 3em;
+	font-weight: 300;
 }
 
 /* nav-dot styles */
 li img {
 	width: 3em;
-	padding-bottom: 10px;
+	padding-bottom: 20px;
 	padding-left: 8px;
 	text-align: center;
 }
@@ -75,10 +104,10 @@ INSTRUCTIONS PAGE
 ==========================*/
 
 #instructions {
-	padding: 30px;
+	padding: 0 20px;
 }
 #instructions h2 {
-	font-size: 2.8em;
+	font-size: 2.4em;
 	padding-bottom: 20px;
 	font-weight: 300;
 }
@@ -86,6 +115,11 @@ INSTRUCTIONS PAGE
 	line-height: 2;
 	font-size: 1.4em;
 	font-weight: 200;
+}
+#instructions li span {
+	background: #e67e22;
+	text-align: center;
+	padding:5px 10px;
 }
 #instructions p {
 	line-height: 3;
@@ -165,4 +199,28 @@ figure.effect-zoe:hover p {
 figure.effect-zoe:hover figcaption {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+}
+
+
+/*=========================
+CHALLENGE PAGE
+==========================*/
+
+.btn-challenge {
+	margin-right: 20px;
+}
+
+
+/*=========================
+USER PAGES
+==========================*/
+
+.form-group label {
+	color: #555;
+	padding-bottom: 5px;
+}
+
+.user-page h1 {
+	font-size: 3.25em;
+	text-shadow: 2px 2px #0092b4;
 }
