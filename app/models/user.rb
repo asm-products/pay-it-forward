@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
          :omniauthable, :lockable, :timeoutable
 
   has_many :identities
+  has_one :stripe_customer
+  has_many :stripe_charges, through: :stripe_customer
 
   class << self
     def find_or_create_by_oauth(auth, signed_in_resource = nil)
