@@ -33,6 +33,9 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'cancancan'
 
+# Payments
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 group :development do
   gem 'pry-rails'
   gem 'pry-rescue'
