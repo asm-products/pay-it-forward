@@ -17,7 +17,7 @@ RSpec.describe StripeCustomer, type: :model do
   it 'is not validate if stripe_id not unique' do
     expect(build(:stripe_customer, stripe_id: stripe_customer.stripe_id).valid?).to be false
   end
-  
+
   it 'belongs_to a user' do
     expect(stripe_customer.user).to_not be nil
   end
