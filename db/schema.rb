@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025052110) do
+ActiveRecord::Schema.define(version: 20141025062657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 20141025052110) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "pledges", force: true do |t|
+    t.integer  "referrer_id"
+    t.integer  "user_id"
+    t.integer  "action"
+    t.datetime "expiration"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "pledges", ["referrer_id"], name: "index_pledges_on_referrer_id", using: :btree
+  add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
+
   create_table "stripe_charges", force: true do |t|
     t.string   "stripe_id"
     t.integer  "stripe_customer_id"
@@ -46,8 +58,10 @@ ActiveRecord::Schema.define(version: 20141025052110) do
     t.integer  "status"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "pledge_id"
   end
 
+  add_index "stripe_charges", ["pledge_id"], name: "index_stripe_charges_on_pledge_id", using: :btree
   add_index "stripe_charges", ["stripe_customer_id"], name: "index_stripe_charges_on_stripe_customer_id", using: :btree
 
   create_table "stripe_customers", force: true do |t|

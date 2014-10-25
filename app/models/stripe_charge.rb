@@ -1,10 +1,11 @@
 class StripeCharge < ActiveRecord::Base
   belongs_to :stripe_customer
+  belongs_to :pledge
 
   after_initialize :default_values
 
-  validates :stripe_id, :stripe_customer_id, :value, :currency, :status, presence: true
-  validates :stripe_id, uniqueness: true
+  validates :stripe_id, :stripe_customer_id, :value, :currency, :status, :pledge, presence: true
+  validates :stripe_id, :pledge, uniqueness: true
 
   enum status: [:authorized, :captured, :refunded, :disputed]
 
