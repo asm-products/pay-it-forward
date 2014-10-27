@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     
-    ::Rails.logger.debug "Request Path - - - - - - - '#{request.path}'"
-    
     # Push Path
     store_location_for(:user, request.path) if request.path[/\/user\//].nil?
     
@@ -23,7 +21,6 @@ class ApplicationController < ActionController::Base
   protected
   
   def after_sign_in_path_for(resource)
-    ::Rails.logger.debug "after_sign_in_path_for - - - - - - - '#{resource}'"
     stored_location_for(resource) || root_path
   end
 
