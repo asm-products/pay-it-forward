@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  resources :pledges, only: [:new, :create]
+  resources :charities
+  
+  # Users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', confirmations: 'confirmations' }
   match 'users/finish_sign_up' => 'users#finish_sign_up', via: [:get, :patch], :as => :user_finish_sign_up
   resources :users, only: [:show]
   
-  resources :charities
+  # Pages
   get "/pages/*id" => 'pages#show', as: :page, format: false
-  root to: 'pages#show', id: 'instructions'
+  root to: 'pages#show', id: 'index'
 end

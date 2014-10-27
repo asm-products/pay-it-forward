@@ -10,10 +10,9 @@ class UsersController < ApplicationController
 
   # GET/PATCH /users/finish_sign_up
   def finish_sign_up
-    # TODO: Redirect if no current_user, or sign up finished
     respond_to do |format|
       if request.patch? && @user.finish_sign_up(user_params)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to after_sign_in_path_for :user }
       else
         format.html
       end

@@ -37,11 +37,12 @@ class User < ActiveRecord::Base
 
         user = User.find_or_create_by!(email: verified_email) do |new_user|
           new_user.name = auth.extra.raw_info.name
-          new_user.email = verified_email ? verified_email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+          new_user.email = verified_email ? verified_email.downcase : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
           new_user.password = Devise.friendly_token
           new_user.skip_confirmation!
         end
-
+        
+        # Rotate password if confirming email with secondary source
         user.update_attributes!(confirmed_at: DateTime.now, password: Devise.friendly_token) if user.confirmed_at.nil? && user.email == verified_email
       end
 
@@ -55,7 +56,7 @@ class User < ActiveRecord::Base
   def finish_sign_up(user_params)
     # Allow Validation, then bypass it
     update!(user_params) && update_columns(
-      email: user_params[:email],
+      email: user_params[:email].downcase,
       confirmed_at: nil,
       unconfirmed_email: nil
       )
@@ -63,5 +64,9 @@ class User < ActiveRecord::Base
 
   def email_verified?
     email && valid_attribute?(:email) && email !~ TEMP_EMAIL_REGEX
+  end
+  
+  def sign_up_complete?
+    email_verified? && confirmed?
   end
 end

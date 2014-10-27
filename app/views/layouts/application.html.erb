@@ -12,28 +12,37 @@
 
   </head>
   <body class="<%= body_class %>">
-
-    <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
-        <%= value %>
-      </div>
-    <% end %>
     
-    <header>
+    <div class="navbar navbar-default" role="navigation">
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="col-md-1">
-              <%= link_to  image_tag("icon-flat.png", :alt => "icon"), page_path('instructions') %>
-            </div>
-            <div class="col-md-8">
-              <p class="header-title">Pay It Forward</p>
-          </div>
-          <div class="header-signup col-md-3">
-            <%= link_to 'Sign Up / Log In', page_path('../users/sign_up'), class: "btn btn-default btn-sm btn-block", type: "button" %>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'Pay It Forward', root_path, class: 'navbar-brand' %>
         </div>
+        
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn navbar-right', type: 'button' %>
+          <% else %>
+            <%= link_to 'Sign Up / Sign In', new_user_session_path, class: 'btn btn-default navbar-btn navbar-right', type: 'button' %>
+          <% end %>
+        </div>
+        
       </div>
-    </header>
+    </div>
+      
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-info" role="alert">
+          <%= value %>
+        </div>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>
