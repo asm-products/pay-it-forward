@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025062657) do
+ActiveRecord::Schema.define(version: 20141028012254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,13 @@ ActiveRecord::Schema.define(version: 20141025062657) do
     t.integer  "user_id"
     t.integer  "action"
     t.datetime "expiration"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "charity_id"
+    t.decimal  "tip_percentage"
   end
 
+  add_index "pledges", ["charity_id"], name: "index_pledges_on_charity_id", using: :btree
   add_index "pledges", ["referrer_id"], name: "index_pledges_on_referrer_id", using: :btree
   add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
 
