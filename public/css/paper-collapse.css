@@ -11,7 +11,7 @@
   background-color: lightgray;
   border-bottom: 1px solid #eeeeee;
   cursor: pointer;
-  color: #777777;
+  color: #333;
   padding: 1rem;
   margin: 2rem;
   -webkit-transition: 0.4s;
@@ -76,6 +76,8 @@
 .collapse-card .body {
   padding: 1rem;
   display: none;
+  background-color: #eee;
+  border-radius: 5px;
 }
 .collapse-card * {
   -webkit-box-sizing: border-box;

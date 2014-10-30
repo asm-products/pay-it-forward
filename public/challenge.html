@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pay It Forward - Choose Your Pledge</title>
+    <title>Pay It Forward - Challenge Your Friends</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -70,8 +70,8 @@
         <div class="container">
             <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
-              <h1>PLEDGE</h1>
-              <p>Put your money where your mouth is. What will you pledge to {{CHARITY}}?</p>
+              <h1>CHALLENGE</h1>
+              <p>Things just got interesting. Who will you challenge to meet your pledge?</p>
           </div>
       </div>
     </div>
@@ -82,57 +82,35 @@
             <div class="col-lg-10 col-lg-offset-1">
                 <ol class="breadcrumb">
                   <li><a href="choose.html">Choose</a></li>
-                  <li class="active">Pledge</li>
-                  <li>Pay</li>
-                  <li >Challenge</li>
+                  <li><a href="pledge.html">Pledge</a></li>
+                  <li><a href="pay.html">Pay</a></li>
+                  <li class="active">Challenge</li>
                 </ol>
             </div>
         </div>
     </div>
 
-    <!-- main section -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
-                <h2>Your pledge amount is $20.</h2>
-                <a href="#" class="pull-left" id="pledge-options">Adjust your pledge amount <i class="fa fa-angle-double-down fa-fw"></i></a>
-                <a href="pay.html"><button type="button" class="btn btn-primary pull-right">OK!</button></a>
+<div class="container">
+    <div class="col-lg-10 col-lg-offset-1 challenge-module">
+        <p class="lead">Your pledge amount will be charged only if you cannot convince at least 5 of your friends to match your pledge. You can challenge as many friends as you like. Challenge them using the options below.</p>
+        <div class="social-challenge">
+                <button class="btn btn-primary btn-lg"><i class="fa fa-facebook-square fa-2x fa-fw"></i> Challenge with Facebook</button>
+                <button class="btn btn-info btn-lg"><i class="fa fa-twitter-square fa-2x fa-fw"></i> Challenge with Twitter</button>
+                <button class="btn btn-danger btn-lg"><i class="fa fa-google-plus-square fa-2x fa-fw"></i> Challenge with Google Plus</button>
             </div>
+            
+            <p class="lead">or, just copy and share this unique link however you like: http://payitforward.io/6fh&tD <button class="btn btn-default btn-xs">copy</button></p>
         </div>
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 panel pledge-adjust" id="pledge-adjust">
-                 <label for="newpledge">New Pledge Amount</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="newpledge"placeholder="Enter your new amount">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Submit</button>
-                        </span>
-                    </div>
-
-                <div class="slider">
-                    <small>humble bundle-esque slider goes here</small>
-                    <p>
-                    <!-- <form>
-                        <label for="fader">PIF Tip</label>
-                        <input type=range min=0 max=100 value=50 id=fader step=1 onchange="outputUpdate(value)">
-                        <output for="fader" id="volume">50</output>
-                        <script>
-                        function outputUpdate(vol) {
-                        document.querySelector('#volume').value = vol;
-                        }
-                        </script>
-                    </form> -->
-                </div>
-
-
-            </div>
         </div>
     </div>
 
 
 
-        <!-- Footer -->
+
+
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -161,12 +139,6 @@
     <script src="js/jquery-1.11.0.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <script>
-        $('#pledge-options').click(function () {
-            $('#pledge-adjust').toggle();
-        });
-    </script>
 </body>
 
 </html>
