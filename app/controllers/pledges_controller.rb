@@ -1,34 +1,36 @@
 class PledgesController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_pledge, only: [:show]
+  skip_load_and_authorize_resource
+  skip_authorization_check
+  before_action :decode_pledge_candidate, only: [:show, :update, :create]
+  
+  include Wicked::Wizard
+  steps :select_charity, :set_value
 
   # GET /pledge/new
   def new
-    @charity = Pledge.new
+    redirect_to wizard_path(steps.first)
   end
-
-  # POST /charities
-  def create
-    @pledge = Pledge.new(pledge_params)
-
-    respond_to do |format|
-      if @pledge.save
-        format.html { redirect_to @pledge, notice: 'Pledge was successfully created.' }
-        format.json { render :show, status: :created, location: @pledge }
-      else
-        format.html { render :new }
-        format.json { render json: @pledge.errors, status: :unprocessable_entity }
-      end
-    end
+  
+  # GET /pledge/:step
+  def show
+    render_wizard
+  end
+  
+  def update
+    render_wizard
   end
   
   private
-
-  def set_pledges
-    @pledge = Pledge.find(params[:id])
+  
+  def decode_pledge_candidate
+    @pledge_candidate = PledgeCandidate.new(ActiveSupport::JSON.decode(session[:pledge_candidate] || '{}'))
   end
-
+  
+  def encode_pledge_candidate
+    session[:pledge_candidate] = ActiveSupport::JSON.encode(@pledge_candidate)
+  end
+  
   def pledge_params
-    params.require(:pledge).permit(:name, :description, :url, :image)
+    params.require(:pledge).permit(:referrer_id, :charity_id, :tip_percentage) unless params[:pledge].nil?
   end
 end

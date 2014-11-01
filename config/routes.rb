@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :pledges, only: [:new, :create]
+  resources :pledges
   resources :charities
   
   # Users

@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
           new_user.password = Devise.friendly_token
           new_user.skip_confirmation!
         end
-        
+
         # Rotate password if confirming email with secondary source
         user.update_attributes!(confirmed_at: DateTime.now, password: Devise.friendly_token) if user.confirmed_at.nil? && user.email == verified_email
       end
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   def email_verified?
     email && valid_attribute?(:email) && email !~ TEMP_EMAIL_REGEX
   end
-  
+
   def sign_up_complete?
     email_verified? && confirmed?
   end
