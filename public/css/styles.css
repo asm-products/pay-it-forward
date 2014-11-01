@@ -1,0 +1,364 @@
+/*!
+ * Forked from Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 9px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.no-top-border {
+    border-top: none;
+}
+.no-bottom-border {
+    border-bottom: none;
+}
+
+.panel {
+    border: 1px lightgray solid;
+    padding: 5px;
+}
+
+.modal-title {
+    color: #eee;
+    text-shadow: 1px 1px black;
+    font-weight: 500;
+}
+.modal {
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+}
+.modal-dialog {
+    max-width: 720px;
+}
+.modal-content {
+    background-color: inherit;
+    padding: 0;
+    margin:0;
+    margin-top:25%;
+
+}
+.modal-header {
+    display: visible;
+    background-color: inherit;
+}
+.modal-body {
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+.breadcrumb li {
+    color: #999;
+}
+.breadcrumb li.active{
+    color: #428bca;
+}
+
+.jumbotron {
+    padding-top: 95px;
+    background-image: url('../img/intro-bg.jpg');
+}
+
+/* ===================
+ABOUT STYLES
+=================== */
+
+.page-message {
+    position: relative;
+    padding-top: 7%;
+    padding-bottom: 5%;
+}
+
+.page-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+.page-section {
+    padding-bottom: 5%;
+    text-align: inherit;
+
+}
+.page-section h2 {
+    padding-top: 5%;
+    padding-bottom: 3%;
+    text-align: center;
+}
+.page-section p {
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 720px;
+}
+.img-wrapper {
+    text-align: center;
+    padding-top: 2%;
+    max-width: 960px;
+}
+.img-wrapper img {
+    display: inline-block;
+    margin: 10px;
+}
+.caption a {
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+.caption a:hover {
+    /*background-color: orange;*/
+    padding-bottom: 5px;
+    border-bottom: 5px orange solid;
+}
+.callout {
+    text-align: center;
+    background-color: lightgreen;
+    padding: 20px 120px;
+    margin: 100px 120px 0;
+}
+
+
+/* ===================
+PLEDGE STYLES
+=================== */
+
+.pledge-confirm {
+    padding-bottom: 5%;
+}
+.pledge-confirm a {
+    padding-top: 20px;
+}
+.pledge-confirm button {
+    margin-top: 5%;
+}
+.pledge-adjust {
+    padding: 3%;
+    display: none;
+}
+.pledge-adjust .input-group {
+    width: 250px;
+}
+.pledge-adjust .slider {
+    padding: 3% 0;
+    width: 250px;
+}
+
+
+/* ===================
+SIGNUP / LOG IN STYLES
+=================== */
+.sign-up-module {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+.sign-up-module p {
+    margin-bottom: 5rem;
+}
+.social-sign-up button {
+    width: 100%;
+    padding-left: 5rem;
+    text-align: left;
+    margin: 10px 0;
+    display: block;
+
+}
+.social-sign-up, .email-sign-up {
+    max-width: 100%;
+    padding-bottom: 5%;
+}
+.email-sign-up .form-group {
+    text-align: left;
+}
+
+/* ===================
+CHALLENGE STYLES
+=================== */
+
+.challenge-module {
+    margin-bottom: 7rem;
+}
+.social-challenge {
+    margin: 5rem 0;
+}
+.social-challenge button{
+    width: 300px;
+    text-align: left;
+    margin: 3% 0%;
+    display: block;;
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+       .page-message {
+        padding-bottom: 0%;
+    }
+
+    .page-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    /*background: url(../img/banner-bg.jpg) no-repeat center center;*/
+    background-image: linear-gradient(to bottom right,#345877,#1fc5db);
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+.no-top-border {
+    border-top: none;
+}
+.no-bottom-border {
+    border-bottom: none;
+}
+
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
