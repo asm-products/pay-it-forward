@@ -6,7 +6,7 @@ class PledgeCandidate
   attr_accessor :referrer_id, :charity_id, :tip_percentage, :pledge_amount
 
   # steps :select_charity, :set_value
-  attr_accessor :errors, :current_step
+  attr_accessor :current_step
   validates :charity_id, presence: true, if: proc { |f| f.should_be_valid? :select_charity }
   validates :tip_percentage, :pledge_amount, presence: true, if: proc { |f| f.should_be_valid? :set_value }
 

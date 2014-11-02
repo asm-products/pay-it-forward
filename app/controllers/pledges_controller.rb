@@ -8,6 +8,7 @@ class PledgesController < ApplicationController
 
   # GET /pledge/new
   def new
+    session[:pledge_candidate] = nil
     redirect_to wizard_path(steps.first)
   end
 
@@ -28,11 +29,11 @@ class PledgesController < ApplicationController
   end
 
   def encode_pledge_candidate
-    session[:pledge_candidate] = ActiveSupport::JSON.encode(@pledge_candidate) if @pledge_candidate.valid?
+    session[:pledge_candidate] = ActiveSupport::JSON.encode(@pledge_candidate.attributes) if @pledge_candidate.valid?
     @pledge_candidate
   end
 
   def pledge_candidate_params
-    params.require(:pledge_candidate).permit(:referrer_id, :charity_id, :tip_percentage)
+    params.require(:pledge_candidate).permit(:referrer_id, :charity_id, :tip_percentage, :pledge_amount)
   end
 end

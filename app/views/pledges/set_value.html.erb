@@ -24,13 +24,27 @@
   </div>
 </div>
 
+<% if @pledge_candidate.errors.any? %>
+<div class="container">
+  <ul>
+    <% @pledge_candidate.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <!-- main section -->
 <div class="container">
+  <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+  <%= f.hidden_field :pledge_amount, value: 20 %>
+  <%= f.hidden_field :tip_percentage, value: 5 %>
+   
   <div class="row">
     <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
       <h2>Your pledge amount is $20.</h2>
       <a href="#" class="pull-left" id="pledge-options">Adjust your pledge amount <%= fa_icon "angle-double-down fw" %></a>
-      <a href="pay.html"><button type="button" class="btn btn-primary pull-right">OK!</button></a>
+      <%= f.submit 'OK!', class: 'btn btn-primary pull-right' %>
     </div>
   </div>
   <div class="row">
@@ -48,4 +62,5 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
