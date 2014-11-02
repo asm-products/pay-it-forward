@@ -1,86 +1,110 @@
+<!-- Jumbotron header -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <h1>CHOOSE</h1>
+        <p>Let's do this! Please select a charity and a pledge amount from the list below.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+<!-- Breadcrumb Nav -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <ol class="breadcrumb">
+        <li class="active">Choose</li>
+        <li>Pledge</li>
+        <li>Pay</li>
+        <li >Challenge</li>
+      </ol>
+    </div>
+  </div>
+</div>
 
-          <% Charity.all.each do |charity| %>
-
-            <%= f.label(:charity_id, class: 'radio-inline') do %>
-              <%= f.radio_button(:charity_id, charity.id) %><%= charity.name %>
-            <% end %>
-
-          <% end %>
-          <%= f.submit 'Continue', class: 'btn btn-default btn-block' %>
-
-      <% end %>
 
 <!-- Charity Cards -->
 <!-- Card 1 -->
 <div class="container">
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="collapse-card">
-                <div class="card-img watsi">
-                  <div class="title">
-                    <i class="fa fa-question-circle fa-2x fa-fw fa-white"></i>
-                    <span>click to choose</span>
-                    <strong>WATSI</strong>
-                  </div>
-              </div>
-                  <div class="body">
-                    <p class="lead">Watsi is a nonprofit healthcare crowdsourcing platform that enables individual donors to directly fund medical care for individuals in developing countries without access to affordable medical care.
-                    </p>
-                    <p class="lead">
-                    Watsi is the first nonprofit funded by seed accelerator Y Combinator, and plans to become financially sustainable within three years of launch. 
-                    </p>
-                    <a href="pledge.html"><button type="button" class="btn btn-primary">Choose</button></a>
-                  </div>
-                </div>
-            </div>
+  
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="collapse-card">
+        <div class="card-img watsi">
+          <div class="title">
+            <%= fa_icon "question-circle 2x fw white" %>
+            <span>click to choose</span>
+            <strong>WATSI</strong>
+          </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="collapse-card">
-                <div class="card-img cw">
-                  <div class="title">
-                    <i class="fa fa-question-circle fa-2x fa-fw fa-white"></i>
-                    <span>click to choose</span>
-                    <strong>CHARITY:WATER</strong>
-                  </div>
-              </div>
-                  <div class="body">
-                    <p class="lead">Based in New York City, Charity Water uses both mainstream and social media platforms to raise awareness, including annual galas and events arranged via Twitter. The initiative has received donations from 300,000 individuals. It provides GPS coordinates and photos of the wells it builds.
-                    </p>
-                    <p class="lead">
-                    The organization has 20 full-time staff members, 10 interns and more than 800 volunteers. 100% of its public donations are used to fund clean water projects, as its operating costs are funded by private donors, foundations and sponsors.
-                    </p>
-                    <a href="pledge.html"><button type="button" class="btn btn-primary">Choose</button></a>
-                  </div>
-                </div>
-            </div>
+        <div class="body">
+          <p class="lead">
+            Watsi is a nonprofit healthcare crowdsourcing platform that enables individual donors to directly fund medical care for individuals in developing countries without access to affordable medical care.
+          </p>
+          <p class="lead">
+            Watsi is the first nonprofit funded by seed accelerator Y Combinator, and plans to become financially sustainable within three years of launch. 
+          </p>
+          <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+            <%= f.hidden_field :charity_id, value: 1 %>
+            <%= f.submit "Choose", class: 'btn btn-primary' %>
+          <% end %>
         </div>
-
-
-     <!-- Card 3 -->
-        <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="collapse-card">
-                <div class="card-img dwb">
-                  <div class="title">
-                    <i class="fa fa-question-circle fa-2x fa-fw fa-white"></i>
-                    <span>click to choose</span>
-                    <strong>Doctors Without Borders</strong>
-                  </div>
-              </div>
-                  <div class="body">
-                    <p class="lead">Médecins Sans Frontières (MSF) or Doctors Without Borders, is a French-founded (now international and federal) humanitarian-aid non-governmental organization, and Nobel Peace Prize laureate, best known for its projects in war-torn regions and developing countries facing endemic diseases.
-                    </p>
-                    <p class="lead">
-                   In 2007 over 26,000, mostly local, doctors, nurses and other medical professionals, logistical experts, water and sanitation engineers and administrators provided medical aid in over 60 countries.
-                    </p>
-                    <a href="pledge.html"><button type="button" class="btn btn-primary">Choose</button></a>
-                  </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Card 2 -->
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="collapse-card">
+        <div class="card-img cw">
+          <div class="title">
+            <%= fa_icon "question-circle 2x fw white" %>
+            <span>click to choose</span>
+            <strong>CHARITY:WATER</strong>
+          </div>
         </div>
+        <div class="body">
+          <p class="lead">
+            Based in New York City, Charity Water uses both mainstream and social media platforms to raise awareness, including annual galas and events arranged via Twitter. The initiative has received donations from 300,000 individuals. It provides GPS coordinates and photos of the wells it builds.
+          </p>
+          <p class="lead">
+            The organization has 20 full-time staff members, 10 interns and more than 800 volunteers. 100% of its public donations are used to fund clean water projects, as its operating costs are funded by private donors, foundations and sponsors.
+          </p>
+          <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+            <%= f.hidden_field :charity_id, value: 2 %>
+            <%= f.submit "Choose", class: 'btn btn-primary' %>
+          <% end %>
         </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Card 3 -->
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="collapse-card">
+        <div class="card-img dwb">
+          <div class="title">
+            <%= fa_icon "question-circle 2x fw white" %>
+            <span>click to choose</span>
+            <strong>Doctors Without Borders</strong>
+          </div>
+        </div>
+        <div class="body">
+          <p class="lead">Médecins Sans Frontières (MSF) or Doctors Without Borders, is a French-founded (now international and federal) humanitarian-aid non-governmental organization, and Nobel Peace Prize laureate, best known for its projects in war-torn regions and developing countries facing endemic diseases.
+          </p>
+          <p class="lead">
+            In 2007 over 26,000, mostly local, doctors, nurses and other medical professionals, logistical experts, water and sanitation engineers and administrators provided medical aid in over 60 countries.
+          </p>
+          <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+            <%= f.hidden_field :charity_id, value: 3 %>
+            <%= f.submit "Choose", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

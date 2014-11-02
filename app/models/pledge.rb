@@ -7,9 +7,9 @@ class Pledge < ActiveRecord::Base
   has_one :stripe_charge
 
   enum action: [:refunded_by_default, :refunded, :donated, :continued]
-  
+
   validates :user_id, :expiration, :charity_id, :tip_percentage, presence: true
-  
+
   def create_from_candidate
   end
 end

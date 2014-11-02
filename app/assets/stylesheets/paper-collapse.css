@@ -25,17 +25,20 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: 4rem;
+}
 
-}
 .watsi {
-  background-image: url('../img/watsi-banner.jpg');
+  background-image: image-url('watsi-banner.jpg');
 }
+
 .cw {
-  background-image: url('../img/cw-banner.jpg');
+  background-image: image-url('cw-banner.jpg');
 }
+
 .dwb {
-  background-image: url('../img/dwb-banner.jpg');
+  background-image: image-url('dwb-banner.jpg');
 }
+
 .collapse-card .title {
   font-size: 1rem;
   line-height: 1.8rem;
