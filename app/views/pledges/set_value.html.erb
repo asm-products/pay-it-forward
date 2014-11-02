@@ -1,0 +1,51 @@
+<!-- Jumbotron header -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <h1>PLEDGE</h1>
+        <p>Put your money where your mouth is. What will you pledge to <%= @pledge_candidate.charity_id %>?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Breadcrumb Nav -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <ol class="breadcrumb">
+        <li><a href="choose.html">Choose</a></li>
+        <li class="active">Pledge</li>
+        <li>Pay</li>
+        <li>Challenge</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- main section -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
+      <h2>Your pledge amount is $20.</h2>
+      <a href="#" class="pull-left" id="pledge-options">Adjust your pledge amount <%= fa_icon "angle-double-down fw" %></a>
+      <a href="pay.html"><button type="button" class="btn btn-primary pull-right">OK!</button></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 panel pledge-adjust" id="pledge-adjust">
+      <label for="newpledge">New Pledge Amount</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="newpledge"placeholder="Enter your new amount">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Submit</button>
+        </span>
+      </div>
+      
+      <div class="slider">
+        <small>humble bundle-esque slider goes here</small>
+      </div>
+    </div>
+  </div>
+</div>
