@@ -4,7 +4,7 @@ class PledgesController < ApplicationController
   before_action :decode_pledge_candidate, only: [:show, :update, :create]
 
   include Wicked::Wizard
-  steps :select_charity, :set_value
+  steps :select_charity, :set_value, :payment
 
   # GET /pledge/new
   def new
@@ -34,6 +34,6 @@ class PledgesController < ApplicationController
   end
 
   def pledge_candidate_params
-    params.require(:pledge_candidate).permit(:referrer_id, :charity_id, :tip_percentage, :pledge_amount)
+    params.require(:pledge_candidate).permit(:referrer_id, :charity_id, :tip_percentage, :amount)
   end
 end

@@ -3,7 +3,7 @@ class PledgeCandidate
   include ActiveModel::Model
   include ActiveModel::Serialization
 
-  attr_accessor :referrer_id, :charity_id, :tip_percentage, :pledge_amount
+  attr_accessor :referrer_id, :charity_id, :tip_percentage, :amount
 
   # steps :select_charity, :set_value
   attr_accessor :current_step
