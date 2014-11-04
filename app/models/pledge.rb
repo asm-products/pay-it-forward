@@ -8,8 +8,16 @@ class Pledge < ActiveRecord::Base
 
   enum action: [:refunded_by_default, :refunded, :donated, :continued]
 
-  validates :user_id, :expiration, :charity_id, :tip_percentage, presence: true
+  validates :user_id, :expiration, :charity_id, :tip_percentage, :amount, presence: true
 
-  def create_from_candidate
+  def create_from_candidate(candidate)
+    create do |pledge|
+      pledge.referrer_id = candidate.referrer_id
+      #pledge.user_id = 
+      pledge.charity_id = candidate.charity_id
+      pledge.expiration = DateTime.now + 7.days
+      pledge.tip_percentage = candidate.tip_percentage
+      pledge.amount = candidate.amount
+    end
   end
 end

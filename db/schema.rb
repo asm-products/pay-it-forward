@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028012254) do
+ActiveRecord::Schema.define(version: 20141104004033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20141028012254) do
     t.datetime "updated_at",     null: false
     t.integer  "charity_id"
     t.decimal  "tip_percentage"
+    t.integer  "amount"
   end
 
   add_index "pledges", ["charity_id"], name: "index_pledges_on_charity_id", using: :btree

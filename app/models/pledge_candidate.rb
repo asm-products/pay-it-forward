@@ -8,14 +8,14 @@ class PledgeCandidate
   # steps :select_charity, :set_value
   attr_accessor :current_step
   validates :charity_id, presence: true, if: proc { |f| f.should_be_valid? :select_charity }
-  validates :tip_percentage, :pledge_amount, presence: true, if: proc { |f| f.should_be_valid? :set_value }
+  validates :tip_percentage, :amount, presence: true, if: proc { |f| f.should_be_valid? :set_value }
 
   def attributes
     {
       'referrer_id' => @referrer_id,
       'charity_id' => @charity_id,
       'tip_percentage' => @tip_percentage,
-      'pledge_amount' => @pledge_amount
+      'amount' => @amount
     }
   end
 

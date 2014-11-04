@@ -37,7 +37,7 @@
 <!-- main section -->
 <div class="container">
   <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
-  <%= f.hidden_field :pledge_amount, value: 20 %>
+  <%= f.hidden_field :amount, value: 20 %>
   <%= f.hidden_field :tip_percentage, value: 5 %>
    
   <div class="row">
