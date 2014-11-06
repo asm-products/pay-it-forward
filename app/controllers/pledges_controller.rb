@@ -4,7 +4,7 @@ class PledgesController < ApplicationController
   before_action :decode_pledge_candidate, only: [:show, :update, :create]
 
   include Wicked::Wizard
-  steps :select_charity, :set_value, :payment
+  steps :selection, :authorization
 
   # GET /pledge/new
   def new

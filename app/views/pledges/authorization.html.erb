@@ -37,6 +37,7 @@
 <!-- main section -->
 <div class="container">
   <%= form_for @pledge_candidate, url: wizard_path, method: :put do |f| %>
+  <%= f.hidden_field :charity_id %>
   <%= f.hidden_field :amount, value: 20 %>
   <%= f.hidden_field :tip_percentage, value: 5 %>
    
@@ -44,7 +45,22 @@
     <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
       <h2>Your pledge amount is $20.</h2>
       <a href="#" class="pull-left" id="pledge-options">Adjust your pledge amount <%= fa_icon "angle-double-down fw" %></a>
-      <%= f.submit 'OK!', class: 'btn btn-primary pull-right' %>
+      
+       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+               data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+
+               data-image=""
+               data-name="Pay It Forward"
+               data-description="description"
+               data-amount="99999"
+
+               data-currency="USD"
+               data-panel-label="Authorize"
+               data-zip-code="true"
+               data-label="Authorize"
+               data-allow-remember-me="true">
+      </script>
+      
     </div>
   </div>
   <div class="row">
@@ -63,4 +79,5 @@
     </div>
   </div>
   <% end %>
+
 </div>
