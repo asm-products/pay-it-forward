@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     can :read, User
+    can :read, Charity
 
     return unless user
 

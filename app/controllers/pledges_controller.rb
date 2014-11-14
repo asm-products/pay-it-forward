@@ -1,39 +1,48 @@
 class PledgesController < ApplicationController
   skip_load_and_authorize_resource
   skip_authorization_check
-  before_action :decode_pledge_candidate, only: [:show, :update, :create]
+  before_action :set_pledge, only: :show
 
-  include Wicked::Wizard
-  steps :selection, :authorization
+  # GET /pledge/id
+  def show
+    session[:referrer_id] = @pledge.user_id if current_user.nil? || @pledge.user_id != current_user.id
+  end
 
   # GET /pledge/new
   def new
-    session[:pledge_candidate] = nil
-    redirect_to wizard_path(steps.first)
+    @pledge = Pledge.new(charity_id: params[:charity_id])
+
+    redirect_to charities_path if @pledge.charity.nil?
   end
 
-  # GET /pledge/:step
-  def show
-    render_wizard
-  end
+  # POST /pledge
+  def create
+    @pledge = CommitToPledge.call(pledge_params, stripe_params, current_user)
 
-  def update
-    @pledge_candidate.assign_attributes(pledge_candidate_params.merge(current_step: step))
-    render_wizard encode_pledge_candidate
+    respond_to do |format|
+      if @pledge.save
+        format.html { redirect_to @pledge }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   private
 
-  def decode_pledge_candidate
-    @pledge_candidate = PledgeCandidate.new(ActiveSupport::JSON.decode(session[:pledge_candidate] || '{}'))
+  def set_pledge
+    @pledge = Pledge.find(params[:id])
   end
 
-  def encode_pledge_candidate
-    session[:pledge_candidate] = ActiveSupport::JSON.encode(@pledge_candidate.attributes) if @pledge_candidate.valid?
-    @pledge_candidate
+  def pledge_params
+    params.require(:pledge).permit(:charity_id, :tip_percentage, :amount)
   end
 
-  def pledge_candidate_params
-    params.require(:pledge_candidate).permit(:referrer_id, :charity_id, :tip_percentage, :amount)
+  def stripe_params
+    ActionController::Parameters.new(
+      token: params[:stripeToken],
+      token_type: params[:stripeTokenType],
+      email: params[:stripeEmail]
+      )
   end
 end

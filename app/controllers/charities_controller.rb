@@ -3,13 +3,11 @@ class CharitiesController < ApplicationController
   before_action :set_charity, only: [:show, :edit, :update, :destroy]
 
   # GET /charities
-  # GET /charities.json
   def index
     @charities = Charity.all
   end
 
   # GET /charities/1
-  # GET /charities/1.json
   def show
   end
 
@@ -23,7 +21,6 @@ class CharitiesController < ApplicationController
   end
 
   # POST /charities
-  # POST /charities.json
   def create
     @charity = Charity.new(charity_params)
 
@@ -39,7 +36,6 @@ class CharitiesController < ApplicationController
   end
 
   # PATCH/PUT /charities/1
-  # PATCH/PUT /charities/1.json
   def update
     respond_to do |format|
       if @charity.update(charity_params)
@@ -53,7 +49,6 @@ class CharitiesController < ApplicationController
   end
 
   # DELETE /charities/1
-  # DELETE /charities/1.json
   def destroy
     @charity.destroy
     respond_to do |format|
@@ -64,12 +59,10 @@ class CharitiesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_charity
     @charity = Charity.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def charity_params
     params.require(:charity).permit(:name, :description, :url, :image)
   end

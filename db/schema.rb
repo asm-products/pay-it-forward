@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104004033) do
+ActiveRecord::Schema.define(version: 20141113040213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,39 +43,18 @@ ActiveRecord::Schema.define(version: 20141104004033) do
     t.integer  "user_id"
     t.integer  "action"
     t.datetime "expiration"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "charity_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.decimal  "tip_percentage"
     t.integer  "amount"
+    t.string   "stripe_charge_id"
+    t.integer  "status"
+    t.integer  "charity_id"
   end
 
   add_index "pledges", ["charity_id"], name: "index_pledges_on_charity_id", using: :btree
   add_index "pledges", ["referrer_id"], name: "index_pledges_on_referrer_id", using: :btree
   add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
-
-  create_table "stripe_charges", force: true do |t|
-    t.string   "stripe_id"
-    t.integer  "stripe_customer_id"
-    t.integer  "value"
-    t.string   "currency"
-    t.integer  "status"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "pledge_id"
-  end
-
-  add_index "stripe_charges", ["pledge_id"], name: "index_stripe_charges_on_pledge_id", using: :btree
-  add_index "stripe_charges", ["stripe_customer_id"], name: "index_stripe_charges_on_stripe_customer_id", using: :btree
-
-  create_table "stripe_customers", force: true do |t|
-    t.string   "stripe_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "stripe_customers", ["user_id"], name: "index_stripe_customers_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -98,6 +77,7 @@ ActiveRecord::Schema.define(version: 20141104004033) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -54,8 +54,8 @@ Services:
     - `ASSETS_DIRECTORY`: _`/development/assets`_
   
   - [Stripe](//stripe.com/)
-    - `STRIPE_KEY`: _`sk_test_4TYeUPbdKFGeJUXBVJFoI...`_
-
+    - `STRIPE_KEY`: _`pk_test_4TYeurr4kT16D6KedSAlT...`_
+    - `STRIPE_SECRET`: _`sk_test_4TYeUPbdKFGeJUXBVJFoI...`_
 
 ## Contributing
 This project's git flow is based on [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)

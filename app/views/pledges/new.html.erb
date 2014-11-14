@@ -1,9 +1,55 @@
-<% content_for(:page_title, 'Pay It Forward') %>
-<div class="container">
-  
-  <div class="page-header">
-    <h1>Pledge</h1>
+<!-- Jumbotron header -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <h1>PLEDGE</h1>
+        <p>Put your money where your mouth is. What will you pledge to <%= @pledge.charity.name %>?</p>
+      </div>
+    </div>
   </div>
-
 </div>
 
+<!-- Breadcrumb Nav -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <ol class="breadcrumb">
+        <li><a href="choose.html">Choose</a></li>
+        <li class="active">Pledge</li>
+        <li>Pay</li>
+        <li>Challenge</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- main section -->
+<div class="container">
+  <%= form_for @pledge do |f| %>
+  <%= f.hidden_field :charity_id %>
+  <%= f.hidden_field :amount, value: 20 %>
+  <%= f.hidden_field :tip_percentage, value: 5 %>
+   
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
+      <h2>Your pledge amount is $20.</h2>
+      
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+               data-key="<%= ENV['STRIPE_KEY'] %>"
+               data-image="//placehold.it/400x400"
+               data-name="Pay It Forward"
+               data-description="description"
+               data-amount="2000"
+               data-currency="USD"
+               data-panel-label="Authorize"
+               data-zip-code="true"
+               data-label="Authorize"
+               data-allow-remember-me="true">
+      </script>
+      
+    </div>
+  </div>
+  <% end %>
+
+</div>

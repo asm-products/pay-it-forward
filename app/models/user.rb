@@ -17,10 +17,17 @@ class User < ActiveRecord::Base
          :omniauthable, :lockable, :timeoutable
 
   has_many :identities
-  has_one :stripe_customer
-  has_many :stripe_charges, through: :stripe_customer
+  has_many :stripe_charges
 
   class << self
+    def create_by_stripe!(stripe_params)
+      User.create! do |user|
+        user.email = stripe_params[:email]
+        user.password = Devise.friendly_token
+        user.register_stripe_customer(stripe_params)
+      end
+    end
+
     def find_or_create_by_oauth(auth, signed_in_resource = nil)
       identity = Identity.find_by_oauth(auth)
 
@@ -68,5 +75,22 @@ class User < ActiveRecord::Base
 
   def sign_up_complete?
     email_verified? && confirmed?
+  end
+
+  def stripe_customer
+    @stripe_customer ||= ::Stripe::Customer.retrieve(stripe_customer_id) unless stripe_customer_id.nil?
+  end
+
+  def stripe_customer=(stripe_customer)
+    self.stripe_customer_id = stripe_customer.id
+    @stripe_customer = stripe_customer
+  end
+
+  def register_stripe_customer(stripe_params)
+    self.stripe_customer = ::Stripe::Customer.create(
+      card: stripe_params[:token],
+      email: stripe_params[:email]
+      )
+    self.save! unless self.new_record?
   end
 end
