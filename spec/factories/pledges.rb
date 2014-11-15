@@ -1,14 +1,15 @@
 FactoryGirl.define do
 
   factory :pledge do
-    user        { create(:user) }
-    expiration  { 7.days.from_now }
-  end
-
-  factory :pledge_referral, class: Pledge  do
-    referrer    { create(:pledge) }
-    user        { create(:user) }
-    expiration  { 7.days.from_now }
+    charity         { create(:charity) }
+    tip_percentage  { 5 }
+    amount          { 2000 }
+    #user           { create(:user) }
+    expiration      { 7.days.from_now }
+    
+    trait :referrered do
+      referrer { create(:pledge) }
+    end
   end
 
 end

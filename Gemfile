@@ -29,11 +29,6 @@ gem 'high_voltage', '~> 2.2.1'
 gem 'wicked'
 
 # Users
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'cancancan'
 
 # Payments
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'

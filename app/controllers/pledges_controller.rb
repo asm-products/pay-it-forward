@@ -1,6 +1,4 @@
 class PledgesController < ApplicationController
-  skip_load_and_authorize_resource
-  skip_authorization_check
   before_action :set_pledge, only: :show
 
   # GET /pledge/id
