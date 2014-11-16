@@ -29,11 +29,14 @@ gem 'high_voltage', '~> 2.2.1'
 gem 'wicked'
 
 # Users
+gem 'sorcery'
+gem 'email_validator'
 
 # Payments
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development do
+  gem 'quiet_assets'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'

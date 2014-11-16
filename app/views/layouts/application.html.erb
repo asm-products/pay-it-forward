@@ -34,16 +34,18 @@
             <li>
               <%= link_to 'About', page_path(:about) %>
             </li>
-            <li>
-              Sign In
-            </li>
+            <% if current_user %>
+              <li><%= link_to "Sign Out", destroy_user_session_path %></li>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
     </nav>
-    
+
     <%= yield %>
     
     <!-- Footer -->

@@ -1,14 +1,13 @@
 class Pledge < ActiveRecord::Base
   belongs_to :referrer, class_name: 'Pledge'
-  #belongs_to :user
+  belongs_to :user
   belongs_to :charity
   has_one :stripe_charge
 
   enum action: [:refunded_by_default, :donated, :continued]
   enum status: [:authorized, :captured, :canceled, :refunded, :disputed]
 
-  #:user, 
-  validates :expiration, :charity, :tip_percentage, :amount, presence: true
+  validates :user, :expiration, :charity, :tip_percentage, :amount, presence: true
   validates :amount, :tip_percentage, numericality: { only_integer: true }
   validates :amount, numericality: { greater_than: 0 }
   validates :tip_percentage, numericality: { greater_than_or_equal_to: 0 }
@@ -20,7 +19,7 @@ class Pledge < ActiveRecord::Base
     self.stripe_charge = ::Stripe::Charge.create(
       amount: amount,
       currency: "usd",
-      #customer: user.stripe_customer_id,
+      customer: user.stripe_customer_id,
       capture: false
     )
     
