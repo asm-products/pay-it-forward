@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
       User.create! do |user|
         user.email = stripe_params[:email]
         user.password = user.password_confirmation = ::Sorcery::Model::TemporaryToken::generate_random_token
-        user.register_stripe_customer(stripe_params)
+        user.register_stripe_customer!(stripe_params)
       end
     end
   end
