@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">
         <h1>PLEDGE</h1>
-        <p>Put your money where your mouth is. What will you pledge to <%= @pledge.charity.name %>?</p>
+        <p>Put your money where your mouth is.</p>
       </div>
     </div>
   </div>
@@ -26,30 +26,144 @@
 
 <!-- main section -->
 <div class="container">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @pledge.charity.name %></h3>
+        </div>
+
+        <div class="panel-body">
+          # TODO: Placeholder for charity donation amount and stuffs
+        </div>
+
+        </div>
+      </div>
+    </div>
+  
   <%= form_for @pledge do |f| %>
   <%= f.hidden_field :charity_id %>
   <%= f.hidden_field :amount, value: 2000 %>
   <%= f.hidden_field :tip_percentage, value: 5 %>
-   
-  <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 clearfix pledge-confirm">
-      <h2>Your pledge amount is $20.</h2>
-      
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-               data-key="<%= ENV['STRIPE_KEY'] %>"
-               data-image="//placehold.it/400x400"
-               data-name="Pay It Forward"
-               data-description="description"
-               data-amount="2000"
-               data-currency="USD"
-               data-panel-label="Authorize"
-               data-zip-code="true"
-               data-label="Authorize"
-               data-allow-remember-me="true">
-      </script>
-      
-    </div>
-  </div>
+
   <% end %>
 
+  
+    <div class="row">
+      <form action="" method="POST" id="payment-form" class="form-horizontal">
+
+      <div class="col-md-6">
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="panel-title">Credit Card Info</h3>
+          </div>
+
+          <div class="panel-body">
+
+            <!-- Card Holder Name -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label"  for="textinput">Full Name</label>
+              <div class="col-sm-8">
+                <input type="text" name="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Email</label>
+              <div class="col-sm-8">
+                <input type="text" name="email" maxlength="65" placeholder="Email" class="email form-control">
+              </div>
+            </div>
+
+            <!-- Card Number -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Card Number</label>
+              <div class="col-sm-8">
+                <input type="text" id="cardnumber" maxlength="19" placeholder="Card Number" class="card-number form-control">
+              </div>
+            </div>
+
+            <!-- Expiry-->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Card Expiry Date</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input type="text" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control" maxlength="2" placeholder="MM">
+                  <span class="input-group-addon"> / </span>
+                  <input type="text" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control" maxlength="2" placeholder="YY">
+                </div>
+              </div>
+            </div>
+
+            <!-- CVV -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">CVV/CVV2</label>
+              <div class="col-sm-8">
+                <input type="text" id="cvv" placeholder="CVV" maxlength="4" size="4" class="card-cvc form-control">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="panel-title">Billing Address</h3>
+          </div>
+
+          <div class="panel-body">
+
+            <!-- Street -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Street</label>
+              <div class="col-sm-8">
+                <input type="text" name="street" placeholder="Street" class="address form-control">
+              </div>
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">City</label>
+              <div class="col-sm-8">
+                <input type="text" name="city" placeholder="City" class="city form-control">
+              </div>
+            </div>
+
+            <!-- State -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">State</label>
+              <div class="col-sm-8">
+                <input type="text" name="state" maxlength="65" placeholder="State" class="state form-control">
+              </div>
+            </div>
+
+            <!-- Postcal Code -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Postal Code</label>
+              <div class="col-sm-8">
+                <input type="text" name="zip" maxlength="9" placeholder="Postal Code" class="zip form-control">
+              </div>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Country</label>
+              <div class="col-sm-8">
+                <%= country_select('user', 'country', { selected: 'US' }, { class: 'country form-control' }) %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success btn-block" type="submit">Authorize</button>
+  </form>
+  
 </div>
