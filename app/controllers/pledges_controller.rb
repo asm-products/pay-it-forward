@@ -15,7 +15,7 @@ class PledgesController < ApplicationController
 
   # POST /pledge
   def create
-    @pledge = CommitToPledge.call(pledge_params, stripe_params, current_user)
+    @pledge = CommitToPledge.call(pledge_params, user_params, current_user)
 
     respond_to do |format|
       if @pledge.save
@@ -33,14 +33,10 @@ class PledgesController < ApplicationController
   end
 
   def pledge_params
-    params.require(:pledge).permit(:charity_id, :tip_percentage, :amount)
+    params.require(:pledge).permit(:charity_id, :amount, :tip_percentage)
   end
-
-  def stripe_params
-    ActionController::Parameters.new(
-      token: params[:stripeToken],
-      token_type: params[:stripeTokenType],
-      email: params[:stripeEmail]
-      )
+  
+  def user_params
+    params.require(:user).permit(:stripe_customer_token, :name, :email)
   end
 end

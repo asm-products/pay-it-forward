@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   
+  has_many :pledges
+  
   validates :password, length: { minimum: 6 }
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
@@ -9,11 +11,11 @@ class User < ActiveRecord::Base
   validates :email, email: true
   
   class << self
-    def create_by_stripe!(stripe_params)
+    def create_by_pledge_user_params!(pledge_user_params)
       User.create! do |user|
-        user.email = stripe_params[:email]
+        user.email    = pledge_user_params[:email]
         user.password = user.password_confirmation = ::Sorcery::Model::TemporaryToken::generate_random_token
-        user.register_stripe_customer!(stripe_params)
+        user.register_stripe_customer(pledge_user_params[:stripe_customer_token])
       end
     end
   end
@@ -27,11 +29,7 @@ class User < ActiveRecord::Base
     @stripe_customer = stripe_customer
   end
 
-  def register_stripe_customer(stripe_params)
-    self.stripe_customer = ::Stripe::Customer.create(
-      card: stripe_params[:token],
-      email: stripe_params[:email]
-      )
-    self.save! unless self.new_record?
+  def register_stripe_customer(stripe_token)
+    self.stripe_customer = ::Stripe::Customer.create(card: stripe_token, email: self.email)
   end
 end

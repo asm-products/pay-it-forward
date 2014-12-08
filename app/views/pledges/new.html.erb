@@ -26,7 +26,7 @@
 
 <!-- main section -->
 <%= form_for @pledge do |f| %>
-  <%= f.hidden_field :stripe_customer_token %>
+  <%= hidden_field_tag 'user[stripe_customer_token]' %>
   <%= f.hidden_field :charity_id %>
   <%= f.hidden_field :amount, value: 2000 %>
   <%= f.hidden_field :tip_percentage, value: 5 %>
@@ -64,7 +64,7 @@
               <div class="form-group">
                 <%= label_tag :name, 'Full Name', class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= text_field_tag nil, nil, placeholder: 'Card Holder Name', autocomplete: 'name cc-name', 'data-stripe' => 'name', class: 'form-control', required: true %>
+                  <%= text_field_tag 'user[name]', nil, placeholder: 'Card Holder Name', autocomplete: 'name cc-name', 'data-stripe' => 'name', class: 'form-control', required: true %>
                 </div>
               </div>
 
@@ -72,7 +72,7 @@
               <div class="form-group">
                 <%= label_tag :email, 'Email', class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= email_field_tag :email, nil, placeholder: 'Email', autocomplete: 'email', class: 'form-control', required: true %>
+                  <%= email_field_tag 'user[email]', nil, placeholder: 'Email', autocomplete: 'email', class: 'form-control', required: true %>
                 </div>
               </div>
 
@@ -153,7 +153,7 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label" for="textinput">Country</label>
                 <div class="col-sm-8">
-                  <%= country_select('user', 'country', { selected: 'US' }, { 'data-stripe' => 'address_country', autocomplete: 'billing country', class: 'country form-control', required: true }) %>
+                  <%= country_select nil, nil, { selected: 'US' }, { 'data-stripe' => 'address_country', autocomplete: 'billing country', class: 'country form-control', required: true } %>
                 </div>
               </div>
 
