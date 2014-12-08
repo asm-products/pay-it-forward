@@ -1,0 +1,9 @@
+$(document).ready(function() {
+
+  if (typeof Stripe != 'undefined') {
+    Stripe.setPublishableKey('<%= ENV['STRIPE_KEY'] %>');
+  } else {
+    console.error('Failed to Load Stripe!');
+  }
+
+});

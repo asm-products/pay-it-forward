@@ -2,7 +2,9 @@ class Pledge < ActiveRecord::Base
   belongs_to :referrer, class_name: 'Pledge'
   belongs_to :user
   belongs_to :charity
-
+  
+  attr_accessor :stripe_customer_token
+  
   enum action: [:refunded_by_default, :donated, :continued]
   enum status: [:authorized, :captured, :canceled, :refunded, :disputed]
 

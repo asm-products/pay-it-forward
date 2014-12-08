@@ -9,7 +9,7 @@ class PledgesController < ApplicationController
   # GET /pledge/new
   def new
     @pledge = Pledge.new(charity_id: params[:charity_id])
-
+    
     redirect_to charities_path if @pledge.charity.nil?
   end
 
