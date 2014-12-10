@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   class << self
     def create_by_pledge_user_params!(pledge_user_params)
       User.create! do |user|
+        user.name     = pledge_user_params[:name]
         user.email    = pledge_user_params[:email]
         user.password = user.password_confirmation = ::Sorcery::Model::TemporaryToken::generate_random_token
         user.register_stripe_customer(pledge_user_params[:stripe_customer_token])
