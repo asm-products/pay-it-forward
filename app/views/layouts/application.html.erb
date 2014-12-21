@@ -4,37 +4,77 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= page_title(:separator => " | ") %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%= page_title(:separator => " - ") %></title>
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
     <%= csrf_meta_tags %>
 
   </head>
   <body class="<%= body_class %>">
-
-    <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
-        <%= value %>
-      </div>
-    <% end %>
     
-    <header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="col-md-1">
-              <%= link_to  image_tag("icon-flat.png", :alt => "icon"), page_path('instructions') %>
-            </div>
-            <div class="col-md-8">
-              <p class="header-title">Pay It Forward</p>
-          </div>
-          <div class="header-signup col-md-3">
-            <%= link_to 'Sign Up / Log In', page_path('../users/sign_up'), class: "btn btn-default btn-sm btn-block", type: "button" %>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'Pay It Forward', root_path, class: 'navbar-brand' %>
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to 'About', page_path(:about) %>
+            </li>
+            <% if current_user %>
+              <li><%= link_to "Sign Out", destroy_user_session_path %></li>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
-    </header>
+      <!-- /.container -->
+    </nav>
 
     <%= yield %>
+    
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-inline">
+              <li>
+                <%= link_to 'Home', root_path %>
+              </li>
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+                <%= link_to 'About', page_path(:about) %>
+              </li>
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+                <a href="#services">FAQ</a>
+              </li>
+            </ul>
+            <p class="copyright text-muted small">Built by the community at <a href="https://assembly.com/pay-it-forward" target="_blank">Assembly</a></p>
+            <p class="copyright text-muted small">Copyright &copy; Pay It Forward 2014. All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
   </body>
 </html>

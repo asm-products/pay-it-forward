@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/*
+  Paper Collapse
+
+  Collapsible paper cards.
+
+  Made with love by bbo - ©2014 Alexander Rühle
+  MIT License http://opensource.org/licenses/MIT
+*/
+.collapse-card {
+  background-color: lightgray;
+  border-bottom: 1px solid #eeeeee;
+  cursor: pointer;
+  color: #333;
+  padding: 1rem;
+  margin: 2rem;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+.card-img {
+   width: 100%;
+   height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 4rem;
+}
+
+.watsi {
+  background-image: image-url('watsi-banner.jpg');
+}
+
+.cw {
+  background-image: image-url('cw-banner.jpg');
+}
+
+.dwb {
+  background-image: image-url('dwb-banner.jpg');
+}
+
+.collapse-card .title {
+  font-size: 1rem;
+  line-height: 1.8rem;
+}
+.collapse-card .title:before, .collapse-card .title:after {
+  content: " ";
+  display: table;
+}
+.collapse-card .title:after {
+  clear: both;
+}
+.collapse-card .title i {
+  float: left;
+}
+.collapse-card .title span {
+  float: right;
+  margin-left: 1rem;
+  color: #fff;
+}
+.collapse-card .title strong {
+  display: block;
+  margin-left: 4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+}
+.collapse-card .title strong::after {
+  color: #404040;
+  font-family: 'FontAwesome';
+  padding-left: .4rem;
+  font-size: 1rem;
+  line-height: 1.49rem;
+}
+.fa-white {
+  color: #fff;
+}
+.collapse-card .body {
+  padding: 1rem;
+  display: none;
+  background-color: #eee;
+  border-radius: 5px;
+}
+.collapse-card * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.collapse-card.active {
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+  z-index: 200;
+  margin: 1rem -1rem;
+}
+.collapse-card.active:hover .title strong::after {
+  content: "\f066";
+}
+.collapse-card:hover .title strong::after {
+  content: "\f065";
+}

@@ -1,21 +1,39 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  before_action :set_user, only: [:show]
-  before_action :set_current_user, only: [:finish_sign_up]
-
-  # GET/PATCH /users/:id
+  # GET /user
   def show
   end
 
-  # GET/PATCH /users/finish_sign_up
-  def finish_sign_up
-    # TODO: Redirect if no current_user, or sign up finished
+  # GET /user/new
+  def new
+    @user = User.new
+  end
+
+  # GET /user/edit
+  def edit
+  end
+
+  # POST /user
+  def create
+    @user = User.new(user_params)
+
     respond_to do |format|
-      if request.patch? && @user.finish_sign_up(user_params)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
+      if @user.save
+        format.html { redirect_to :root, notice: 'User was successfully created.' }
       else
-        format.html
+        format.html { render :new }
+      end
+    end
+  end
+
+  # PATCH/PUT /users
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to :root, notice: 'User was successfully updated.' }
+      else
+        format.html { render :edit }
       end
     end
   end
@@ -26,11 +44,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def set_current_user
-    @user = current_user
-  end
-
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end

@@ -10,6 +10,7 @@ gem 'pg'
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'font-awesome-rails'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
 
@@ -20,20 +21,24 @@ gem 'asset_sync'
 # Extensions
 gem 'turbolinks'
 gem 'rails-html-sanitizer', '~> 1.0'
+gem 'virtus'
 
 # Helpers
 gem 'flutie'
 gem 'jbuilder', '~> 2.0'
 gem 'high_voltage', '~> 2.2.1'
+gem 'wicked'
+gem 'country_select'
 
 # Users
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'cancancan'
+gem 'sorcery'
+gem 'email_validator'
+
+# Payments
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development do
+  gem 'quiet_assets'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
