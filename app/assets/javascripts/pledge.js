@@ -1,18 +1,18 @@
 function stripeResponseHandler(status, response) {
-  var $form = $('#new_pledge');
+  var $form = $('#new_pledge_form');
 
   if (response.error) {
     $form.find('#payment-errors').text(response.error.message).removeClass('hidden');
     $form.find('button').prop('disabled', false);
   } else {
     var token = response.id;
-    $form.find('#user_stripe_customer_token').val(token);
+    $form.find('#pledge_form_stripe_customer_token').val(token);
     $form.get(0).submit();
   }
 }
 
 var ready = function() {
-  $('#new_pledge').bootstrapValidator({
+  $('#new_pledge_form').bootstrapValidator({
     feedbackIcons: {
       valid: 'glyphicon glyphicon-ok',
       invalid: 'glyphicon glyphicon-remove',

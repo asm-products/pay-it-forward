@@ -21,6 +21,7 @@ gem 'asset_sync'
 # Extensions
 gem 'turbolinks'
 gem 'rails-html-sanitizer', '~> 1.0'
+gem 'virtus'
 
 # Helpers
 gem 'flutie'

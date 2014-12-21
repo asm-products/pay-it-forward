@@ -17,21 +17,21 @@ class Pledge < ActiveRecord::Base
   def authorize!
     self.stripe_charge = ::Stripe::Charge.create(
       amount: amount,
-      currency: "usd",
+      currency: 'usd',
       customer: user.stripe_customer_id,
       capture: false
     )
-    
+
     # TODO: Handle validation errors
     self.save! unless self.new_record?
   end
-  
+
   def stripe_charge
     @stripe_charge ||= ::Stripe::Charge.retrieve(stripe_charge_id) unless stripe_charge_id.nil?
   end
 
   private
-  
+
   def stripe_charge=(stripe_charge)
     self.stripe_charge_id = stripe_charge.id
     @stripe_charge = stripe_charge

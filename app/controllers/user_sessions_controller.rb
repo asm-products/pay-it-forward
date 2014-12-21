@@ -16,9 +16,9 @@ class UserSessionsController < ApplicationController
     logout
     redirect_back_or_to(:root, notice: 'Signed out!')
   end
-  
+
   private
-  
+
   def session_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end

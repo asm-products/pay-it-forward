@@ -8,18 +8,19 @@ class PledgesController < ApplicationController
 
   # GET /pledge/new
   def new
-    @pledge = Pledge.new(charity_id: params[:charity_id])
-    
-    redirect_to charities_path if @pledge.charity.nil?
+    charity = Charity.find_by_id(params[:charity_id])
+    redirect_to charities_path if charity.nil?
+
+    @pledge_form = PledgeForm.new(charity: charity, user: current_user)
   end
 
   # POST /pledge
   def create
-    @pledge = CommitToPledge.call(pledge_params, user_params, current_user)
+    @pledge_form = PledgeForm.new(pledge_form_params.merge(user: current_user))
 
     respond_to do |format|
-      if @pledge.save
-        format.html { redirect_to @pledge }
+      if @pledge_form.save
+        format.html { redirect_to @pledge_form.pledge }
       else
         format.html { render :new }
       end
@@ -32,11 +33,7 @@ class PledgesController < ApplicationController
     @pledge = Pledge.find(params[:id])
   end
 
-  def pledge_params
-    params.require(:pledge).permit(:charity_id, :amount, :tip_percentage)
-  end
-  
-  def user_params
-    params.require(:user).permit(:stripe_customer_token, :name, :email)
+  def pledge_form_params
+    params.require(:pledge_form).permit(:charity_id, :amount, :tip_percentage, :stripe_customer_token, :name, :email)
   end
 end
