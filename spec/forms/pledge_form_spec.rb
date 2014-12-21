@@ -54,23 +54,19 @@ RSpec.describe PledgeForm, type: :form do
     end
 
     it 'validates that amount is an integer' do
+      pledge_form = PledgeForm.new(params.merge(amount: '30.0'))
+      expect(pledge_form.amount).to eq 30
+      
       pledge_form = PledgeForm.new(params.merge(amount: 30.0))
-      expect(pledge_form.valid?).to be false
-      expect(pledge_form.errors.messages[:amount]).to_not eq nil
-
-      pledge_form = PledgeForm.new(params.merge(amount: 30))
-      expect(pledge_form.validate).to be true
-      expect(pledge_form.errors.messages[:amount]).to eq nil
+      expect(pledge_form.amount).to eq 30
     end
 
     it 'validates that tip_percentage is an integer' do
+      pledge_form = PledgeForm.new(params.merge(tip_percentage: '30.0'))
+      expect(pledge_form.tip_percentage).to eq 30
+      
       pledge_form = PledgeForm.new(params.merge(tip_percentage: 30.0))
-      expect(pledge_form.valid?).to be false
-      expect(pledge_form.errors.messages[:tip_percentage]).to_not eq nil
-
-      pledge_form = PledgeForm.new(params.merge(tip_percentage: 30))
-      expect(pledge_form.valid?).to be true
-      expect(pledge_form.errors.messages[:tip_percentage]).to eq nil
+      expect(pledge_form.tip_percentage).to eq 30
     end
 
     it 'validates that amount is greater_than 0' do
