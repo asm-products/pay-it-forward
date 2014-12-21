@@ -10,7 +10,7 @@ deploy:
   provider: heroku
   strategy: git
   api_key:
-    secure: HAxxBj+148meraEjQ4n3nTJ2674LCeNnZaiye2lyGA1k3lCJCAjKYIaazvillO+wCpdajnX1giV9U0Y7tyum31QR9SjbdioAPwwZmMYtU4jKLJYjwQvmhhC4x/k4mytvGsugY0mdkpbahonkpFpY4JFHox9aF0h1N4h6yTSd77s=
+    secure: "T90Gk/oqPdqB6yO6C99N/M8ZL3u/43E7a1cuPK7C/uFLRQsY9TgU0RrZJAoJ3Jfju35eyG6I8f9HTUq7ic61zOzvGFFbOM+GePYqRDsdge4bRdkD7bblw8U5SgLxZpRA1JVIgvp6/JSW0kBJm6v+HduVKTZ99PZiYiDisF78520="
   app:
     master: pay-it-forward-stg
     develop: pay-it-forward-dev

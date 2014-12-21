@@ -49,7 +49,8 @@ group :development do
   gem 'rubocop'
   gem 'better_errors'
   gem 'binding_of_caller'
-end
+  gem 'travis', '~> 1.7.4'
+  end
 
 group :development, :test do
   gem 'dotenv-rails'
