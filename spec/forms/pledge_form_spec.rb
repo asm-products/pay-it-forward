@@ -130,7 +130,11 @@ RSpec.describe PledgeForm, type: :form do
       expect(pledge_form.errors.messages[:user]).to_not eq nil
     end
 
-    it 'validates the stripe_customer_token'
+    it 'validates the stripe_customer_token' do 
+      pledge_form = PledgeForm.new(params.merge(stripe_customer_token: 'not_a_real_token'))
+      expect(pledge_form.valid?).to be false
+      expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
+    end
 
     context 'when new user' do
       it 'validates that the email is not taken' do
@@ -151,4 +155,27 @@ RSpec.describe PledgeForm, type: :form do
     end
 
   end
+  
+  describe 'save' do
+    
+    it 'returns false if data is not valid' do
+      pledge_form = PledgeForm.new()
+      expect(pledge_form.save).to be false
+    end
+    
+    context 'new user' do
+      it 'creates a new user'
+      it 'user has stripe_customer_token'
+    end
+    
+    context 'existing user' do
+      it 'does not create a new user'
+      it 'user has stripe_customer_token applied to it'
+    end
+    
+    it 'creates new pledge'
+    it 'authorizes pledge'
+    
+  end
+  
 end

@@ -29,6 +29,8 @@ class PledgeForm
   validate :email_not_taken, if: 'email.present?'
   validate :user_email_mismatch, if: 'email.present?'
 
+  attr_reader :pledge
+  
   def charity
     @charity ||= Charity.find_by_id(charity_id) unless charity_id.nil?
   end
@@ -39,23 +41,6 @@ class PledgeForm
 
   def referrer
     @referrer ||= User.find_by_id(referrer_id) unless referrer_id.nil?
-  end
-
-  attr_reader :pledge
-
-  def charity=(new_charity)
-    @charity = new_charity
-    self.charity_id = new_charity.nil? ? nil : new_charity.id
-  end
-
-  def user=(new_user)
-    @user = new_user
-    self.user_id = new_user.nil? ? nil : new_user.id
-  end
-
-  def referrer=(new_referrer)
-    @referrer = new_referrer
-    self.referrer_id = new_referrer.nil? ? nil : new_referrer.id
   end
 
   def save
