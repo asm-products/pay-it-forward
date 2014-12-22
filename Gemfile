@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.3'
 
 # Core
-gem 'rails', '4.2.0.beta1'
+gem 'rails', '4.2.0'
 gem 'puma'
 gem 'pg'
 
@@ -44,7 +44,7 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'pry-byebug'
   gem 'byebug'
-  gem 'web-console', '~> 2.0.0.beta2'
+  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rubocop'
   gem 'better_errors'
