@@ -67,7 +67,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.2.0.2)
+    bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.2.2)
     byebug (3.5.1)
@@ -391,7 +391,7 @@ DEPENDENCIES
   autoprefixer-rails
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.2.0)
+  bootstrap-sass
   byebug
   country_select
   coveralls
@@ -401,8 +401,8 @@ DEPENDENCIES
   flutie
   fog
   font-awesome-rails
-  high_voltage (~> 2.2.1)
-  jbuilder (~> 2.0)
+  high_voltage
+  jbuilder
   jquery-rails
   paperclip
   pg
@@ -414,17 +414,17 @@ DEPENDENCIES
   quiet_assets
   rack-timeout
   rails (= 4.2.0)
-  rails-html-sanitizer (~> 1.0)
+  rails-html-sanitizer
   rails_12factor
-  rspec-rails (~> 3.1)
+  rspec-rails
   rubocop
-  sass-rails (~> 5.0.0.beta1)
+  sass-rails
   shoulda-matchers
   sorcery
   spring
   stripe!
   turbolinks
-  uglifier (>= 1.3.0)
+  uglifier
   virtus
-  web-console (~> 2.0)
+  web-console
   wicked
