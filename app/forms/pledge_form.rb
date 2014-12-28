@@ -2,9 +2,6 @@ class PledgeForm
   include Virtus.model
   include ActiveModel::Model
 
-  # include ActiveRecord::Associations
-  # belongs_to :user
-
   attribute :amount, Integer
   attribute :tip_percentage, Integer
   attribute :stripe_customer_token, String
@@ -30,7 +27,7 @@ class PledgeForm
   validate :user_email_mismatch, if: 'email.present?'
 
   attr_reader :pledge
-  
+
   def charity
     @charity ||= Charity.find_by_id(charity_id) unless charity_id.nil?
   end
@@ -42,7 +39,9 @@ class PledgeForm
   def referrer
     @referrer ||= User.find_by_id(referrer_id) unless referrer_id.nil?
   end
-  
+
+  attr_reader :pledge
+
   def charity=(new_charity)
     @charity = new_charity
     self.charity_id = new_charity.nil? ? nil : new_charity.id
@@ -79,21 +78,23 @@ class PledgeForm
 
   def stripe_customer_token_must_be_valid
     if stripe_customer_token.match(/^tok_/).nil? || stripe_customer_token.size > 255
-      errors.add(:stripe_customer_token, 'Stripe token is Invalid')
+      return errors.add(:stripe_customer_token, 'Stripe token is Invalid')
     end
 
+    return unless errors.empty?
+
     # TODO: Make remote calls async
-    # begin
-    #  Stripe::Token.retrieve(stripe_customer_token)
-    # rescue Stripe::InvalidRequestError => e
-    #  errors.add(:stripe_customer_token, "Stripe token is Invalid")
-    # rescue Stripe::AuthenticationError => e
-    #  errors.add(:stripe_customer_token, "Authentication with Stripe failed")
-    # rescue Stripe::APIConnectionError => e
-    #  errors.add(:stripe_customer_token, "Network communication with Stripe failed")
-    # rescue Stripe::StripeError => e
-    #  errors.add(:stripe_customer_token, "Something with Stripe went wrong")
-    # end
+    begin
+      Stripe::Token.retrieve(stripe_customer_token)
+    rescue Stripe::InvalidRequestError
+      errors.add(:stripe_customer_token, 'Stripe token is Invalid')
+    rescue Stripe::AuthenticationError
+      errors.add(:stripe_customer_token, 'Authentication with Stripe failed')
+    rescue Stripe::APIConnectionError
+      errors.add(:stripe_customer_token, 'Network communication with Stripe failed')
+    rescue Stripe::StripeError
+      errors.add(:stripe_customer_token, 'Something with Stripe went wrong')
+    end
   end
 
   def email_not_taken

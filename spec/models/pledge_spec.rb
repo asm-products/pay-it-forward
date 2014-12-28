@@ -1,5 +1,4 @@
 RSpec.describe Pledge, type: :model do
-
   describe 'user' do
     it 'must be present' do
       expect(build(:pledge, user_id: nil).valid?).to be false
@@ -70,5 +69,4 @@ RSpec.describe Pledge, type: :model do
   describe 'authorize!' do
     it 'creates a stripe_charge'
   end
-
 end

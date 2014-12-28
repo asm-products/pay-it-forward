@@ -60,6 +60,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'coveralls', require: false
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do

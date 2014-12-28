@@ -1,22 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe PledgeForm, type: :form do
+  let(:params) do
+    {
+      charity_id: create(:charity).id,
+      user_id: nil,
+      amount: 2000,
+      tip_percentage: 5,
+      stripe_customer_token: Stripe::Token.create(
+                               card: {
+                                 number: '4242424242424242',
+                                 exp_month: 3,
+                                 exp_year: 2016,
+                                 cvc: 314
+                               }
+                             ).id,
+      name: 'Smith',
+      email: 'email@example.com'
+    }
+  end
 
   describe 'validations' do
-
-    let(:params) do
-      {
-        charity_id: create(:charity).id,
-        user_id: nil,
-
-        amount: 20,
-        tip_percentage: 5,
-        stripe_customer_token: 'tok_abc123',
-        name: 'Smith',
-        email: 'email@example.com'
-      }
-    end
-
     it 'validates the presence of charity' do
       pledge_form = PledgeForm.new(params.except(:charity_id))
       expect(pledge_form.valid?).to be false
@@ -56,7 +60,7 @@ RSpec.describe PledgeForm, type: :form do
     it 'validates that amount is an integer' do
       pledge_form = PledgeForm.new(params.merge(amount: '30.0'))
       expect(pledge_form.amount).to eq 30
-      
+
       pledge_form = PledgeForm.new(params.merge(amount: 30.0))
       expect(pledge_form.amount).to eq 30
     end
@@ -64,7 +68,7 @@ RSpec.describe PledgeForm, type: :form do
     it 'validates that tip_percentage is an integer' do
       pledge_form = PledgeForm.new(params.merge(tip_percentage: '30.0'))
       expect(pledge_form.tip_percentage).to eq 30
-      
+
       pledge_form = PledgeForm.new(params.merge(tip_percentage: 30.0))
       expect(pledge_form.tip_percentage).to eq 30
     end
@@ -130,8 +134,12 @@ RSpec.describe PledgeForm, type: :form do
       expect(pledge_form.errors.messages[:user]).to_not eq nil
     end
 
-    it 'validates the stripe_customer_token' do 
+    it 'validates the stripe_customer_token' do
       pledge_form = PledgeForm.new(params.merge(stripe_customer_token: 'not_a_real_token'))
+      expect(pledge_form.valid?).to be false
+      expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
+
+      pledge_form = PledgeForm.new(params.merge(stripe_customer_token: 'tok_abc123'))
       expect(pledge_form.valid?).to be false
       expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
     end
@@ -153,29 +161,29 @@ RSpec.describe PledgeForm, type: :form do
         expect(pledge_form.errors.messages[:email]).to_not eq nil
       end
     end
-
   end
-  
+
   describe 'save' do
-    
     it 'returns false if data is not valid' do
-      pledge_form = PledgeForm.new()
+      pledge_form = PledgeForm.new
       expect(pledge_form.save).to be false
     end
-    
+
     context 'new user' do
-      it 'creates a new user'
+      it 'creates a new user' do
+        pledge_form = PledgeForm.new(params)
+        expect { pledge_form.save }.to change { User.count }.by(1)
+      end
+
       it 'user has stripe_customer_token'
     end
-    
+
     context 'existing user' do
       it 'does not create a new user'
       it 'user has stripe_customer_token applied to it'
     end
-    
+
     it 'creates new pledge'
     it 'authorizes pledge'
-    
   end
-  
 end

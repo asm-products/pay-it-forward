@@ -1,5 +1,4 @@
 RSpec.describe User, type: :model do
-
   describe 'password' do
     it 'must be at least 5 characters' do
       expect(build(:user, password: '12345', password_confirmation: '12345').valid?).to be false

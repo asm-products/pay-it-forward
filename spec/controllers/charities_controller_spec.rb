@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CharitiesController, type: :controller do
-
   let(:valid_attributes) { { name: 'Charity' } }
 
   let(:invalid_attributes) { { name: nil } }
@@ -133,5 +132,4 @@ RSpec.describe CharitiesController, type: :controller do
       expect(response).to redirect_to(charities_url)
     end
   end
-
 end

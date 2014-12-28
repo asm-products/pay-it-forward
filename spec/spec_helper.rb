@@ -1,3 +1,23 @@
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+
+  c.filter_sensitive_data('<TWITTER_KEY>')    { ENV['TWITTER_KEY'] }
+  c.filter_sensitive_data('<TWITTER_SECRET>') { ENV['TWITTER_SECRET'] }
+
+  c.filter_sensitive_data('<FACEBOOK_KEY>')    { ENV['FACEBOOK_KEY'] }
+  c.filter_sensitive_data('<FACEBOOK_SECRET>') { ENV['FACEBOOK_SECRET'] }
+
+  c.filter_sensitive_data('<AWS_ACCESS_KEY_ID>')     { ENV['AWS_ACCESS_KEY_ID'] }
+  c.filter_sensitive_data('<AWS_SECRET_ACCESS_KEY>') { ENV['AWS_SECRET_ACCESS_KEY'] }
+
+  c.filter_sensitive_data('<STRIPE_KEY>')    { ENV['STRIPE_KEY'] }
+  c.filter_sensitive_data('<STRIPE_SECRET>') { ENV['STRIPE_SECRET'] }
+end
+
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
@@ -37,5 +57,15 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.syntax = :expect
     mocks.verify_partial_doubles = true
+  end
+
+  # Add VCR to all tests
+  config.around(:each) do |example|
+    options = example.metadata[:vcr] || { record: :new_episodes }
+    if options[:record] == :skip
+      VCR.turned_off(&example)
+    else
+      VCR.use_cassette('master_cassette', options, &example)
+    end
   end
 end

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe CharitiesController, type: :routing do
   describe 'routing' do
-
     it 'routes to #index' do
       expect(get: '/charities').to route_to('charities#index')
     end
@@ -30,6 +29,5 @@ RSpec.describe CharitiesController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/charities/1').to route_to('charities#destroy', id: '1')
     end
-
   end
 end
