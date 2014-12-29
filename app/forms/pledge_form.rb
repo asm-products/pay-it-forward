@@ -43,22 +43,10 @@ class PledgeForm
     @referrer
   end
 
-  def charity=(new_charity)
-    @charity = new_charity
-    self.charity_id = new_charity.nil? ? nil : new_charity.id
-    @charity
-  end
-
   def user=(new_user)
     @user = new_user
     self.user_id = new_user.nil? ? nil : new_user.id
     @user
-  end
-
-  def referrer=(new_referrer)
-    @referrer = new_referrer
-    self.referrer_id = new_referrer.nil? ? nil : new_referrer.id
-    @referrer
   end
 
   def save
