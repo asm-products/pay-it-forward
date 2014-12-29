@@ -1,7 +1,6 @@
 FactoryGirl.define do
-
   factory :pledge do
-    user            { create(:user) }
+    user            { create(:user, :stripe_customer) }
     charity         { create(:charity) }
     tip_percentage  { 5 }
     amount          { 2000 }
@@ -10,5 +9,4 @@ FactoryGirl.define do
       referrer { create(:pledge) }
     end
   end
-
 end
