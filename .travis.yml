@@ -1,16 +1,19 @@
 language: ruby
 addons:
   postgresql: '9.3'
-env: DATABASE_URL=postgresql://postgres:@localhost/travis_ci_test
+env:
+  global:
+    - DATABASE_URL=postgresql://postgres:@localhost/travis_ci_test
+    - secure: ImTV7gxUJUUiBn89qXvv97C+s8pJ0U2wwfFV/NrSDm6u5Esr31vAA3nz6m9br7K0TxhikpDfzborlsMGowt5LKdzKfjNBlbhGZEXxjBm6ftkpKxh4XOWOhd8sxxWx+bH9qDCc/cNoz2sX+YYYjQp07rpjdeu/3Z6H6J2X1CrU8o=
 before_script:
-- psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres
 rvm:
-- 2.1.3
+  - 2.1.3
 deploy:
   provider: heroku
   strategy: git
   api_key:
-    secure: "T90Gk/oqPdqB6yO6C99N/M8ZL3u/43E7a1cuPK7C/uFLRQsY9TgU0RrZJAoJ3Jfju35eyG6I8f9HTUq7ic61zOzvGFFbOM+GePYqRDsdge4bRdkD7bblw8U5SgLxZpRA1JVIgvp6/JSW0kBJm6v+HduVKTZ99PZiYiDisF78520="
+    secure: T90Gk/oqPdqB6yO6C99N/M8ZL3u/43E7a1cuPK7C/uFLRQsY9TgU0RrZJAoJ3Jfju35eyG6I8f9HTUq7ic61zOzvGFFbOM+GePYqRDsdge4bRdkD7bblw8U5SgLxZpRA1JVIgvp6/JSW0kBJm6v+HduVKTZ99PZiYiDisF78520=
   app:
     master: pay-it-forward-stg
     develop: pay-it-forward-dev

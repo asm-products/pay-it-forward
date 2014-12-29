@@ -59,7 +59,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'coveralls', require: false
+  gem 'codeclimate-test-reporter', require: false
   gem 'vcr'
   gem 'webmock'
 end

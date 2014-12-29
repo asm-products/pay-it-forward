@@ -7,6 +7,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.ignore_hosts 'codeclimate.com'
 
   c.filter_sensitive_data('<TWITTER_KEY>')    { ENV['TWITTER_KEY'] }
   c.filter_sensitive_data('<TWITTER_SECRET>') { ENV['TWITTER_SECRET'] }
