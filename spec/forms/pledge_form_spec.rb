@@ -7,7 +7,7 @@ RSpec.describe PledgeForm, type: :form do
       user_id: nil,
       amount: 2000,
       tip_percentage: 5,
-      stripe_customer_token: Stripe::Token.create(
+      stripe_auth_token: Stripe::Token.create(
                                card: {
                                  number: '4242424242424242',
                                  exp_month: 3,
@@ -39,10 +39,10 @@ RSpec.describe PledgeForm, type: :form do
       expect(pledge_form.errors.messages[:tip_percentage]).to_not eq nil
     end
 
-    it 'validates the presence of stripe_customer_token' do
-      pledge_form = PledgeForm.new(params.except(:stripe_customer_token))
+    it 'validates the presence of stripe_auth_token' do
+      pledge_form = PledgeForm.new(params.except(:stripe_auth_token))
       expect(pledge_form.valid?).to be false
-      expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
+      expect(pledge_form.errors.messages[:stripe_auth_token]).to_not eq nil
     end
 
     it 'validates the presence of name' do
@@ -134,14 +134,14 @@ RSpec.describe PledgeForm, type: :form do
       expect(pledge_form.errors.messages[:user]).to_not eq nil
     end
 
-    it 'validates the stripe_customer_token' do
-      pledge_form = PledgeForm.new(params.merge(stripe_customer_token: 'not_a_real_token'))
+    it 'validates the stripe_auth_token' do
+      pledge_form = PledgeForm.new(params.merge(stripe_auth_token: 'not_a_real_token'))
       expect(pledge_form.valid?).to be false
-      expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
+      expect(pledge_form.errors.messages[:stripe_auth_token]).to_not eq nil
 
-      pledge_form = PledgeForm.new(params.merge(stripe_customer_token: 'tok_abc123'))
+      pledge_form = PledgeForm.new(params.merge(stripe_auth_token: 'tok_abc123'))
       expect(pledge_form.valid?).to be false
-      expect(pledge_form.errors.messages[:stripe_customer_token]).to_not eq nil
+      expect(pledge_form.errors.messages[:stripe_auth_token]).to_not eq nil
     end
 
     context 'when new user' do
@@ -175,15 +175,59 @@ RSpec.describe PledgeForm, type: :form do
         expect { pledge_form.save }.to change { User.count }.by(1)
       end
 
-      it 'user has stripe_customer_token'
+      it 'user has stripe_customer_id' do
+        pledge_form = PledgeForm.new(params)
+        pledge_form.save
+        expect(pledge_form.user.stripe_customer_id).to_not be nil
+      end
     end
 
     context 'existing user' do
-      it 'does not create a new user'
-      it 'user has stripe_customer_token applied to it'
+      it 'does not create a new user' do
+        user = create(:user)
+        pledge_form = PledgeForm.new(params.merge(user_id: user.id, email: user.email))
+        expect { pledge_form.save }.to_not change { User.count }
+      end
+
+      context 'new stripe_auth_token' do
+        it 'user has stripe_customer_id applied to it' do
+          user = create(:user)
+          pledge_form = PledgeForm.new(params.merge(user_id: user.id, email: user.email))
+
+          pledge_form.save
+          user.reload
+          expect(user.stripe_customer_id).to_not be nil
+        end
+      end
+
+      context 'has existing stripe_auth_token' do
+        it 'does not modify stripe_customer_id' do
+          user = create(:user, :stripe_customer)
+          pledge_form = PledgeForm.new(params.merge(user_id: user.id, email: user.email))
+
+          expect do
+            pledge_form.save
+            user.reload
+          end.to_not change { user.stripe_customer_id }
+        end
+      end
     end
 
-    it 'creates new pledge'
-    it 'authorizes pledge'
+    it 'creates new pledge' do
+      pledge_form = PledgeForm.new(params)
+      expect { pledge_form.save }.to change { Pledge.count }.by(1)
+      expect(pledge_form.pledge).to_not be nil
+    end
+
+    it 'authorizes pledge' do
+      pledge_form = PledgeForm.new(params)
+      pledge_form.save
+
+      pledge = pledge_form.pledge
+
+      expect(pledge.authorized?).to be true
+      expect(pledge.stripe_charge).to_not be nil
+      expect(pledge.stripe_charge.captured).to be false
+    end
   end
 end

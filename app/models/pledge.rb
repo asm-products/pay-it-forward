@@ -22,12 +22,15 @@ class Pledge < ActiveRecord::Base
       capture: false
     )
 
+    self.status = :authorized
+
     # TODO: Handle validation errors
     self.save! unless self.new_record?
   end
 
   def stripe_charge
     @stripe_charge ||= ::Stripe::Charge.retrieve(stripe_charge_id) unless stripe_charge_id.nil?
+    @stripe_charge
   end
 
   private

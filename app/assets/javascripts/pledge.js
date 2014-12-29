@@ -6,7 +6,7 @@ function stripeResponseHandler(status, response) {
     $form.find('button').prop('disabled', false);
   } else {
     var token = response.id;
-    $form.find('#pledge_form_stripe_customer_token').val(token);
+    $form.find('#pledge_form_stripe_auth_token').val(token);
     $form.get(0).submit();
   }
 }

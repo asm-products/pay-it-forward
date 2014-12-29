@@ -26,7 +26,7 @@
 
 <!-- main section -->
 <%= form_for @pledge_form, url: pledges_path, method: :post do |f| %>
-  <%= f.hidden_field :stripe_customer_token %>
+  <%= f.hidden_field :stripe_auth_token %>
   <%= f.hidden_field :charity_id %>
   <%= f.hidden_field :amount, value: 2000 %>
   <%= f.hidden_field :tip_percentage, value: 5 %>

@@ -34,6 +34,6 @@ class PledgesController < ApplicationController
   end
 
   def pledge_form_params
-    params.require(:pledge_form).permit(:charity_id, :amount, :tip_percentage, :stripe_customer_token, :name, :email)
+    params.require(:pledge_form).permit(:charity_id, :amount, :tip_percentage, :stripe_auth_token, :name, :email)
   end
 end
