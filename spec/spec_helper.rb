@@ -1,5 +1,8 @@
 require 'vcr'
 
+ENV['STRIPE_KEY'] ||= '<STRIPE_KEY>'
+ENV['STRIPE_SECRET'] ||= '<STRIPE_SECRET>'
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
