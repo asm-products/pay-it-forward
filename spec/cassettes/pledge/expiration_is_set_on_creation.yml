@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:54 GMT
+      - Tue, 30 Dec 2014 04:04:52 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_ZHfIGo048iliRZPP
+      - req_JACLiuDozz1IQxWN
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15EuLu4AnjI1zHWBY0u2k2u7",
+          "id": "tok_15FHFY4AnjI1zHWBJqOYpsZv",
           "livemode": false,
-          "created": 1419824274,
+          "created": 1419912292,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15EuLt4AnjI1zHWBDLtt0cFi",
+            "id": "card_15FHFY4AnjI1zHWB9BdZ63kD",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -89,13 +89,13 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:54 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:52 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_15EuLu4AnjI1zHWBY0u2k2u7&email=person35%40example.com
+      string: card=tok_15FHFY4AnjI1zHWBJqOYpsZv&email=person35%40example.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -123,7 +123,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:54 GMT
+      - Tue, 30 Dec 2014 04:04:52 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -139,7 +139,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_WU783LrtjsRk3OwQ
+      - req_18b0PR0IvIa3WrXF
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -149,8 +149,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1419824274,
-          "id": "cus_5Pjp5CtICGvl0W",
+          "created": 1419912292,
+          "id": "cus_5Q7U89f9ehVOJr",
           "livemode": false,
           "description": null,
           "email": "person35@example.com",
@@ -160,7 +160,7 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/customers/cus_5Pjp5CtICGvl0W/subscriptions",
+            "url": "/v1/customers/cus_5Q7U89f9ehVOJr/subscriptions",
             "data": []
           },
           "discount": null,
@@ -170,10 +170,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_5Pjp5CtICGvl0W/cards",
+            "url": "/v1/customers/cus_5Q7U89f9ehVOJr/cards",
             "data": [
               {
-                "id": "card_15EuLt4AnjI1zHWBDLtt0cFi",
+                "id": "card_15FHFY4AnjI1zHWB9BdZ63kD",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -193,12 +193,12 @@ http_interactions:
                 "address_line1_check": null,
                 "address_zip_check": null,
                 "dynamic_last4": null,
-                "customer": "cus_5Pjp5CtICGvl0W"
+                "customer": "cus_5Q7U89f9ehVOJr"
               }
             ]
           },
-          "default_card": "card_15EuLt4AnjI1zHWBDLtt0cFi"
+          "default_card": "card_15FHFY4AnjI1zHWB9BdZ63kD"
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:54 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:52 GMT
 recorded_with: VCR 2.9.3

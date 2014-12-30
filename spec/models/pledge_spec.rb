@@ -61,22 +61,22 @@ RSpec.describe Pledge, type: :model do
     end
   end
 
-  describe 'stripe_charge' do
+  describe 'stripe_authorization_charge' do
     let(:pledge) { create(:pledge) }
 
     it 'retrieves ::Stripe::Charge when accessed' do
       pledge.authorize!
-      expect(pledge.stripe_charge).to_not be nil
+      expect(pledge.stripe_authorization_charge).to_not be nil
     end
   end
 
   describe 'authorize!' do
     let(:pledge) { create(:pledge) }
 
-    it 'creates a stripe_charge' do
+    it 'creates a stripe_authorization_charge' do
       pledge.authorize!
-      expect(pledge.stripe_charge).to_not be nil
-      expect(pledge.stripe_charge.captured).to be false
+      expect(pledge.stripe_authorization_charge).to_not be nil
+      expect(pledge.stripe_authorization_charge.captured).to be false
     end
   end
 end

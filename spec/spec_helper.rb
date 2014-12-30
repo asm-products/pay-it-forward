@@ -65,7 +65,7 @@ RSpec.configure do |config|
 
   # Add VCR to all tests
   config.around(:each) do |example|
-    options = example.metadata[:vcr] || { record: :none }
+    options = example.metadata[:vcr] || { record: :all }
     if options[:record] == :skip
       VCR.turned_off(&example)
     else

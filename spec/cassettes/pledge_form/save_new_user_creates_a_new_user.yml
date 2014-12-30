@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:16 GMT
+      - Tue, 30 Dec 2014 04:04:15 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_RE2eOZVHnFIIMEtZ
+      - req_NbhiyTzaKUcE3g72
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15EuLI4AnjI1zHWB4DHxr2sf",
+          "id": "tok_15FHEx4AnjI1zHWBy74CNdJ9",
           "livemode": false,
-          "created": 1419824236,
+          "created": 1419912255,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15EuLI4AnjI1zHWBDKoiM3RV",
+            "id": "card_15FHEx4AnjI1zHWBTQA79WTM",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -89,10 +89,10 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:16 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:15 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/tokens/tok_15EuLI4AnjI1zHWB4DHxr2sf
+    uri: https://api.stripe.com/v1/tokens/tok_15FHEx4AnjI1zHWBy74CNdJ9
     body:
       encoding: US-ASCII
       string: ''
@@ -121,7 +121,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:16 GMT
+      - Tue, 30 Dec 2014 04:04:15 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -137,7 +137,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_N0dsiEX8Rqjfu416
+      - req_MOTkD10loVHSrWxa
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -146,14 +146,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15EuLI4AnjI1zHWB4DHxr2sf",
+          "id": "tok_15FHEx4AnjI1zHWBy74CNdJ9",
           "livemode": false,
-          "created": 1419824236,
+          "created": 1419912255,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15EuLI4AnjI1zHWBDKoiM3RV",
+            "id": "card_15FHEx4AnjI1zHWBTQA79WTM",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -177,13 +177,13 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:16 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:15 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_15EuLI4AnjI1zHWB4DHxr2sf&email=email%40example.com
+      string: card=tok_15FHEx4AnjI1zHWBy74CNdJ9&email=email%40example.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -211,7 +211,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:17 GMT
+      - Tue, 30 Dec 2014 04:04:16 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -227,7 +227,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_qWKqudG4DkxdigOr
+      - req_X5p4MiEI8GYaIwG7
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -237,8 +237,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1419824236,
-          "id": "cus_5PjoXby9TybR1C",
+          "created": 1419912256,
+          "id": "cus_5Q7TNVXzYKdlRV",
           "livemode": false,
           "description": null,
           "email": "email@example.com",
@@ -248,7 +248,7 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/customers/cus_5PjoXby9TybR1C/subscriptions",
+            "url": "/v1/customers/cus_5Q7TNVXzYKdlRV/subscriptions",
             "data": []
           },
           "discount": null,
@@ -258,10 +258,10 @@ http_interactions:
             "object": "list",
             "total_count": 1,
             "has_more": false,
-            "url": "/v1/customers/cus_5PjoXby9TybR1C/cards",
+            "url": "/v1/customers/cus_5Q7TNVXzYKdlRV/cards",
             "data": [
               {
-                "id": "card_15EuLI4AnjI1zHWBDKoiM3RV",
+                "id": "card_15FHEx4AnjI1zHWBTQA79WTM",
                 "object": "card",
                 "last4": "4242",
                 "brand": "Visa",
@@ -281,20 +281,20 @@ http_interactions:
                 "address_line1_check": null,
                 "address_zip_check": null,
                 "dynamic_last4": null,
-                "customer": "cus_5PjoXby9TybR1C"
+                "customer": "cus_5Q7TNVXzYKdlRV"
               }
             ]
           },
-          "default_card": "card_15EuLI4AnjI1zHWBDKoiM3RV"
+          "default_card": "card_15FHEx4AnjI1zHWBTQA79WTM"
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:17 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:16 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=2000&currency=usd&customer=cus_5PjoXby9TybR1C&capture=false
+      string: amount=2000&currency=usd&customer=cus_5Q7TNVXzYKdlRV&statement_descriptor=PayItForward.io%20-%20Auth&capture=false
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -313,7 +313,7 @@ http_interactions:
         capital-jump 3.16.0-28-generic #38-Ubuntu SMP Fri Dec 12 17:37:40 UTC 2014
         x86_64 x86_64 x86_64 GNU/Linux"}'
       Content-Length:
-      - '66'
+      - '114'
   response:
     status:
       code: 200
@@ -322,11 +322,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:17 GMT
+      - Tue, 30 Dec 2014 04:04:16 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1334'
+      - '1374'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -338,7 +338,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_sBL5Hv12LGazM1wM
+      - req_wVlQBZY6Vzzd6ptS
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -347,9 +347,9 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_15EuLJ4AnjI1zHWB0jMurFX5",
+          "id": "ch_15FHEy4AnjI1zHWBaKL5dc0c",
           "object": "charge",
-          "created": 1419824237,
+          "created": 1419912256,
           "livemode": false,
           "paid": true,
           "amount": 2000,
@@ -357,7 +357,7 @@ http_interactions:
           "refunded": false,
           "captured": false,
           "card": {
-            "id": "card_15EuLI4AnjI1zHWBDKoiM3RV",
+            "id": "card_15FHEx4AnjI1zHWBTQA79WTM",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -377,18 +377,18 @@ http_interactions:
             "address_line1_check": null,
             "address_zip_check": null,
             "dynamic_last4": null,
-            "customer": "cus_5PjoXby9TybR1C"
+            "customer": "cus_5Q7TNVXzYKdlRV"
           },
           "balance_transaction": null,
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
-          "customer": "cus_5PjoXby9TybR1C",
+          "customer": "cus_5Q7TNVXzYKdlRV",
           "invoice": null,
           "description": null,
           "dispute": null,
           "metadata": {},
-          "statement_descriptor": null,
+          "statement_descriptor": "PayItForward.io - Auth",
           "fraud_details": {},
           "receipt_email": null,
           "receipt_number": null,
@@ -397,11 +397,11 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/charges/ch_15EuLJ4AnjI1zHWB0jMurFX5/refunds",
+            "url": "/v1/charges/ch_15FHEy4AnjI1zHWBaKL5dc0c/refunds",
             "data": []
           },
-          "statement_description": null
+          "statement_description": "PayItForward.io - Auth"
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:17 GMT
+  recorded_at: Tue, 30 Dec 2014 04:04:17 GMT
 recorded_with: VCR 2.9.3

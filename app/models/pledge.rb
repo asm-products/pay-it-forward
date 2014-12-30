@@ -15,10 +15,11 @@ class Pledge < ActiveRecord::Base
   before_validation :set_expiration, on: :create
 
   def authorize!
-    self.stripe_charge = ::Stripe::Charge.create(
+    self.stripe_authorization_charge = ::Stripe::Charge.create(
       amount: amount,
       currency: 'usd',
       customer: user.stripe_customer_id,
+      statement_descriptor: 'PayItForward.io - Auth',
       capture: false
     )
 
@@ -27,17 +28,28 @@ class Pledge < ActiveRecord::Base
     # TODO: Handle validation errors
     self.save! unless self.new_record?
   end
+  
+  def process!
+    self.status = :captured
 
-  def stripe_charge
-    @stripe_charge ||= ::Stripe::Charge.retrieve(stripe_charge_id) unless stripe_charge_id.nil?
-    @stripe_charge
+    # TODO: Handle validation errors
+    self.save! unless self.new_record?
+  end
+
+  def stripe_authorization_charge
+    @stripe_authorization_charge ||= ::Stripe::Charge.retrieve(stripe_authorization_charge_id) unless stripe_authorization_charge_id.nil?
+    @stripe_authorization_charge
+  end
+  
+  def expired?
+    expiration.past?
   end
 
   private
 
-  def stripe_charge=(stripe_charge)
-    self.stripe_charge_id = stripe_charge.id
-    @stripe_charge = stripe_charge
+  def stripe_authorization_charge=(stripe_authorization_charge)
+    self.stripe_authorization_charge_id = stripe_authorization_charge.id
+    @stripe_authorization_charge = stripe_authorization_charge
   end
 
   def set_expiration

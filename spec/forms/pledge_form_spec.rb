@@ -223,11 +223,7 @@ RSpec.describe PledgeForm, type: :form do
       pledge_form = PledgeForm.new(params)
       pledge_form.save
 
-      pledge = pledge_form.pledge
-
-      expect(pledge.authorized?).to be true
-      expect(pledge.stripe_charge).to_not be nil
-      expect(pledge.stripe_charge.captured).to be false
+      expect(pledge_form.pledge.authorized?).to be true
     end
   end
 end
