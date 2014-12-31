@@ -30,6 +30,14 @@ class Pledge < ActiveRecord::Base
   end
   
   def process!
+    self.stripe_charge = ::Stripe::Charge.create(
+      amount: amount,
+      currency: 'usd',
+      customer: user.stripe_customer_id,
+      statement_descriptor: 'PayItForward.io',
+      capture: true
+    )
+    
     self.status = :captured
 
     # TODO: Handle validation errors
@@ -41,6 +49,11 @@ class Pledge < ActiveRecord::Base
     @stripe_authorization_charge
   end
   
+  def stripe_charge
+    @stripe_charge ||= ::Stripe::Charge.retrieve(stripe_charge_id) unless stripe_charge_id.nil?
+    @stripe_charge
+  end
+  
   def expired?
     expiration.past?
   end
@@ -50,6 +63,11 @@ class Pledge < ActiveRecord::Base
   def stripe_authorization_charge=(stripe_authorization_charge)
     self.stripe_authorization_charge_id = stripe_authorization_charge.id
     @stripe_authorization_charge = stripe_authorization_charge
+  end
+  
+  def stripe_charge=(stripe_charge)
+    self.stripe_charge_id = stripe_charge.id
+    @stripe_charge = stripe_charge
   end
 
   def set_expiration
