@@ -1,10 +1,11 @@
 class Pledge < ActiveRecord::Base
+  include AASM
+
   belongs_to :referrer, class_name: 'Pledge'
   belongs_to :user
   belongs_to :charity
 
-  enum action: [:refunded_by_default, :donated, :continued]
-  enum status: [:authorized, :captured, :canceled, :refunded, :disputed]
+  enum state: [:created, :authorized, :captured, :refunded]
 
   validates :user, :charity, :tip_percentage, :amount, presence: true
   validates :amount, :tip_percentage, numericality: { only_integer: true }
@@ -14,46 +15,57 @@ class Pledge < ActiveRecord::Base
 
   before_validation :set_expiration, on: :create
 
-  def authorize!
-    self.stripe_authorization_charge = ::Stripe::Charge.create(
-      amount: amount,
-      currency: 'usd',
-      customer: user.stripe_customer_id,
-      statement_descriptor: 'PayItForward.io - Auth',
-      capture: false
-    )
+  aasm no_direct_assignment: true, column: :state do
+    state :created, initial: true
+    state :authorized
+    state :captured
+    state :refunded
 
-    self.status = :authorized
+    event :authorize do
+      transitions from: :created, to: :authorized
 
-    # TODO: Handle validation errors
-    self.save! unless self.new_record?
-  end
-  
-  def process!
-    self.stripe_charge = ::Stripe::Charge.create(
-      amount: amount,
-      currency: 'usd',
-      customer: user.stripe_customer_id,
-      statement_descriptor: 'PayItForward.io',
-      capture: true
-    )
-    
-    self.status = :captured
+      before do
+        # TODO: See about being process safe: self.lock!
+        self.stripe_authorization_charge = ::Stripe::Charge.create(
+          amount: amount,
+          currency: 'usd',
+          customer: user.stripe_customer_id,
+          statement_descriptor: 'PayItForward.io - Auth',
+          capture: false
+        )
+      end
+    end
 
-    # TODO: Handle validation errors
-    self.save! unless self.new_record?
+    event :capture do
+      transitions from: :authorized, to: :captured
+
+      before do
+        # TODO: See about being process safe: self.lock!
+        self.stripe_charge = ::Stripe::Charge.create(
+          amount: amount,
+          currency: 'usd',
+          customer: user.stripe_customer_id,
+          statement_descriptor: 'PayItForward.io',
+          capture: true
+        )
+      end
+    end
+
+    event :refund do
+      transitions from: :authorized, to: :refunded
+    end
   end
 
   def stripe_authorization_charge
     @stripe_authorization_charge ||= ::Stripe::Charge.retrieve(stripe_authorization_charge_id) unless stripe_authorization_charge_id.nil?
     @stripe_authorization_charge
   end
-  
+
   def stripe_charge
     @stripe_charge ||= ::Stripe::Charge.retrieve(stripe_charge_id) unless stripe_charge_id.nil?
     @stripe_charge
   end
-  
+
   def expired?
     expiration.past?
   end
@@ -64,7 +76,7 @@ class Pledge < ActiveRecord::Base
     self.stripe_authorization_charge_id = stripe_authorization_charge.id
     @stripe_authorization_charge = stripe_authorization_charge
   end
-  
+
   def stripe_charge=(stripe_charge)
     self.stripe_charge_id = stripe_charge.id
     @stripe_charge = stripe_charge
