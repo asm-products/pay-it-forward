@@ -24,8 +24,9 @@ class Pledge < ActiveRecord::Base
     event :authorize do
       transitions from: :created, to: :authorized
 
-      before do
+      after do
         # TODO: See about being process safe: self.lock!
+        
         self.stripe_authorization_charge = ::Stripe::Charge.create(
           amount: amount,
           currency: 'usd',
@@ -39,7 +40,7 @@ class Pledge < ActiveRecord::Base
     event :capture do
       transitions from: :authorized, to: :captured
 
-      before do
+      after do
         # TODO: See about being process safe: self.lock!
 
         if stripe_authorization_charge.refunds.count.zero?
@@ -61,7 +62,7 @@ class Pledge < ActiveRecord::Base
     event :refund do
       transitions from: :authorized, to: :refunded
 
-      before do
+      after do
         # TODO: See about being process safe: self.lock!
         stripe_authorization_charge.refund if stripe_authorization_charge.refunds.count.zero?
         stripe_charge.refund if stripe_charge.refunds.count.zero?
