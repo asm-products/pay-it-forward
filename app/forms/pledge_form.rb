@@ -43,6 +43,12 @@ class PledgeForm
     @referrer
   end
 
+  def charity=(new_charity)
+    @charity = new_charity
+    self.charity_id = new_charity.nil? ? nil : new_charity.id
+    @charity
+  end
+
   def user=(new_user)
     @user = new_user
     self.user_id = new_user.nil? ? nil : new_user.id
@@ -61,7 +67,9 @@ class PledgeForm
     end
 
     @pledge = Pledge.create!(user: user, charity: charity, amount: amount, tip_percentage: tip_percentage, referrer: referrer)
-    @pledge.authorize!
+
+    AuthorizePledgeJob.perform_later(@pledge)
+    ProcessPledgeJob.perform_later(@pledge)
 
     true
   end

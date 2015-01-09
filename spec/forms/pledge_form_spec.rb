@@ -219,11 +219,6 @@ RSpec.describe PledgeForm, type: :form do
       expect(pledge_form.pledge).to_not be nil
     end
 
-    it 'authorizes pledge' do
-      pledge_form = PledgeForm.new(params)
-      pledge_form.save
-
-      expect(pledge_form.pledge.authorized?).to be true
-    end
+    it 'enqueues AuthorizePledgeJob'
   end
 end

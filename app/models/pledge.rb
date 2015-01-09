@@ -41,6 +41,13 @@ class Pledge < ActiveRecord::Base
 
       before do
         # TODO: See about being process safe: self.lock!
+
+        if stripe_authorization_charge.refunds.count.zero?
+          stripe_authorization_charge.refund(
+            reason: 'requested_by_customer'
+          )
+        end
+
         self.stripe_charge = ::Stripe::Charge.create(
           amount: amount,
           currency: 'usd',
@@ -53,6 +60,12 @@ class Pledge < ActiveRecord::Base
 
     event :refund do
       transitions from: :authorized, to: :refunded
+
+      before do
+        # TODO: See about being process safe: self.lock!
+        stripe_authorization_charge.refund if stripe_authorization_charge.refunds.count.zero?
+        stripe_charge.refund if stripe_charge.refunds.count.zero?
+      end
     end
   end
 

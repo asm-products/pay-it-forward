@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101034823) do
+ActiveRecord::Schema.define(version: 20150109011146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150101034823) do
     t.datetime "expiration"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.decimal  "tip_percentage"
+    t.integer  "tip_percentage"
     t.integer  "amount"
     t.string   "stripe_authorization_charge_id"
     t.integer  "charity_id"
