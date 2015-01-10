@@ -26,7 +26,7 @@ class Pledge < ActiveRecord::Base
 
       after do
         # TODO: See about being process safe: self.lock!
-        
+
         self.stripe_authorization_charge = ::Stripe::Charge.create(
           amount: amount,
           currency: 'usd',

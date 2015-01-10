@@ -3,7 +3,7 @@ class PledgesController < ApplicationController
 
   # GET /pledge/id
   def show
-    session[:referrer_id] = @pledge.user_id if current_user.nil? || @pledge.user_id != current_user.id
+    # session[:referrer_id] = # pledge of other user
   end
 
   # GET /pledge/new
