@@ -60,14 +60,13 @@ class Pledge < ActiveRecord::Base
     end
 
     event :refund do
-      transitions from: :authorized, to: :refunded do
+      transitions from: [:authorized, :captured], to: :refunded do
         after do
           # TODO: See about being process safe: self.lock!
-          stripe_authorization_charge.refund if stripe_authorization_charge.refunds.count.zero?
-          stripe_charge.refund if stripe_charge.refunds.count.zero?
+          stripe_authorization_charge.refund if stripe_authorization_charge.present? && stripe_authorization_charge.refunds.count.zero?
+          stripe_charge.refund if stripe_charge.present? && stripe_charge.refunds.count.zero?
         end
       end
-
     end
   end
 
