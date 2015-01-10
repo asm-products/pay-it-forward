@@ -22,51 +22,52 @@ class Pledge < ActiveRecord::Base
     state :refunded
 
     event :authorize do
-      transitions from: :created, to: :authorized
+      transitions from: :created, to: :authorized do
+        after do
+          # TODO: See about being process safe: self.lock!
 
-      after do
-        # TODO: See about being process safe: self.lock!
-
-        self.stripe_authorization_charge = ::Stripe::Charge.create(
-          amount: amount,
-          currency: 'usd',
-          customer: user.stripe_customer_id,
-          statement_descriptor: 'PayItForward.io - Auth',
-          capture: false
-        )
+          self.stripe_authorization_charge = ::Stripe::Charge.create(
+            amount: amount,
+            currency: 'usd',
+            customer: user.stripe_customer_id,
+            statement_descriptor: 'PayItForward.io - Auth',
+            capture: false
+          )
+        end
       end
     end
 
     event :capture do
-      transitions from: :authorized, to: :captured
+      transitions from: :authorized, to: :captured do
+        after do
+          # TODO: See about being process safe: self.lock!
 
-      after do
-        # TODO: See about being process safe: self.lock!
+          if stripe_authorization_charge.refunds.count.zero?
+            stripe_authorization_charge.refund(
+              reason: 'requested_by_customer'
+            )
+          end
 
-        if stripe_authorization_charge.refunds.count.zero?
-          stripe_authorization_charge.refund(
-            reason: 'requested_by_customer'
+          self.stripe_charge = ::Stripe::Charge.create(
+            amount: amount,
+            currency: 'usd',
+            customer: user.stripe_customer_id,
+            statement_descriptor: 'PayItForward.io',
+            capture: true
           )
         end
-
-        self.stripe_charge = ::Stripe::Charge.create(
-          amount: amount,
-          currency: 'usd',
-          customer: user.stripe_customer_id,
-          statement_descriptor: 'PayItForward.io',
-          capture: true
-        )
       end
     end
 
     event :refund do
-      transitions from: :authorized, to: :refunded
-
-      after do
-        # TODO: See about being process safe: self.lock!
-        stripe_authorization_charge.refund if stripe_authorization_charge.refunds.count.zero?
-        stripe_charge.refund if stripe_charge.refunds.count.zero?
+      transitions from: :authorized, to: :refunded do
+        after do
+          # TODO: See about being process safe: self.lock!
+          stripe_authorization_charge.refund if stripe_authorization_charge.refunds.count.zero?
+          stripe_charge.refund if stripe_charge.refunds.count.zero?
+        end
       end
+
     end
   end
 
