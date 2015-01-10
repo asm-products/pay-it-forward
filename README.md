@@ -24,6 +24,17 @@ Services:
 - Run `./bin/setup`
   - If you run into any error, configure the `.env` file and retry.
 
+#### Setup Backing Resources With Docker
+_Note: Since this project is setup to deploy via Heroku and their buildpacks, a rails/web docker container is not available. Having a web container would provide no benefit the development workflow at this time._
+- [Install Docker](https://docs.docker.com/installation/mac/)
+- Initialize Boot2Docker `boot2docker init`
+- [Install Fig](http://www.fig.sh/install.html)
+- Start Boot2Docker `boot2docker up`
+  - _Note: It's recommended to add the exports to your `~/.bash_profile` then reload your prompt_
+- Start Backing Services `source docker.sh`
+- Run `./bin/setup`
+
+
 #### Environment Variables
 - All
   - `DATABASE_URL`: _`postgresql://username:password@host:port/database`_
@@ -35,23 +46,23 @@ Services:
 - Production
   - `APP_HOST`: _`example.com`_
   - `SECRET_KEY_BASE`: _`ea1e8ba83614cc8d6140105a42642dc8391d6f2f8...`_
-  
+
   - [Twitter](//apps.twitter.com/)
     - `TWITTER_KEY`: _`lkfAc16oTJcbR766zw8GDw...`_
     - `TWITTER_SECRET`: _`NT7WOYKnZplMYQeJ8GjeXHup9sPk5WbR1WZFritdnARP5x7...`_
-  
+
   - [Facebook](//developers.facebook.com)
     - `FACEBOOK_KEY`: _`559887567744...`_
     - `FACEBOOK_SECRET`: _`445a594f443e2f1bcd3025f99e693...`_
-  
+
   - [AWS](//aws.amazon.com/)
-    - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAM...`_ 
+    - `AWS_ACCESS_KEY_ID`: _`AKIAIOSFODNN7EXAM...`_
     - `AWS_SECRET_ACCESS_KEY`: _`wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLE...`_
     - `AWS_S3_REGION`: _`us-east-1`_
     - `AWS_S3_BUCKET`: _`name`_
     - `AWS_S3_FQDN`: _`//localhost`_
     - `ASSETS_DIRECTORY`: _`/development/assets`_
-  
+
   - [Stripe](//stripe.com/)
     - `STRIPE_KEY`: _`pk_test_4TYeurr4kT16D6KedSAlT...`_
     - `STRIPE_SECRET`: _`sk_test_4TYeUPbdKFGeJUXBVJFoI...`_
