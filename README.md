@@ -34,7 +34,6 @@ _Note: Since this project is setup to deploy via Heroku and their buildpacks, a 
 - Start Backing Services `source docker.sh`
 - Run `./bin/setup`
 
-
 #### Environment Variables
 - All
   - `DATABASE_URL`: _`postgresql://username:password@host:port/database`_
