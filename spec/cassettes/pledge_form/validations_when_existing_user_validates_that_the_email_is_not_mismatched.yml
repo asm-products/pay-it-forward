@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 30 Dec 2014 04:04:28 GMT
+      - Sat, 10 Jan 2015 23:01:23 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_bqVybZct2QA9kicV
+      - req_PFkrIBV2ghMZ1bXy
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15FHFA4AnjI1zHWBi5QMgrlX",
+          "id": "tok_15JYER4AnjI1zHWBCAYrzphV",
           "livemode": false,
-          "created": 1419912268,
+          "created": 1420930883,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15FHFA4AnjI1zHWBl8ruwjHZ",
+            "id": "card_15JYER4AnjI1zHWBp0fkfvj8",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -89,10 +89,10 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Tue, 30 Dec 2014 04:04:28 GMT
+  recorded_at: Sat, 10 Jan 2015 23:01:23 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/tokens/tok_15FHFA4AnjI1zHWBi5QMgrlX
+    uri: https://api.stripe.com/v1/tokens/tok_15JYER4AnjI1zHWBCAYrzphV
     body:
       encoding: US-ASCII
       string: ''
@@ -121,7 +121,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 30 Dec 2014 04:04:28 GMT
+      - Sat, 10 Jan 2015 23:01:23 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -137,7 +137,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8qUdhDECQuro29mT
+      - req_Zhovy5eHw9HNy9oR
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -146,14 +146,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15FHFA4AnjI1zHWBi5QMgrlX",
+          "id": "tok_15JYER4AnjI1zHWBCAYrzphV",
           "livemode": false,
-          "created": 1419912268,
+          "created": 1420930883,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15FHFA4AnjI1zHWBl8ruwjHZ",
+            "id": "card_15JYER4AnjI1zHWBp0fkfvj8",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -177,5 +177,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Tue, 30 Dec 2014 04:04:28 GMT
+  recorded_at: Sat, 10 Jan 2015 23:01:23 GMT
 recorded_with: VCR 2.9.3
