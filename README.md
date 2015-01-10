@@ -9,7 +9,7 @@
 Open Source:
 - [Ruby on Rails](//github.com/rails/rails)
 - [PostgreSQL](//www.postgresql.org/)
-- [PostgreSQL](//redis.io/)
+- [Redis](//redis.io/)
 - [jQuery](//jquery.com/)
 - [Bootstrap](//github.com/twbs/bootstrap)
 
