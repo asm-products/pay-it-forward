@@ -1,5 +1,5 @@
 class AuthorizePledgeJob < ActiveJob::Base
-  queue_as :default
+  queue_as :authorize_pledge
 
   def perform(pledge)
     # While this job should not be enqueued unless the pledge is capture-able, there

@@ -9,6 +9,7 @@
 Open Source:
 - [Ruby on Rails](//github.com/rails/rails)
 - [PostgreSQL](//www.postgresql.org/)
+- [PostgreSQL](//redis.io/)
 - [jQuery](//jquery.com/)
 - [Bootstrap](//github.com/twbs/bootstrap)
 
@@ -19,13 +20,14 @@ Services:
 ## Setup
 #### Setup Backing Resources
 - [Setup Postgres](//wiki.postgresql.org/wiki/Detailed_installation_guides)
+- [Setup Redis](//http://redis.io/topics/quickstart)
 - Run `./bin/setup`
   - If you run into any error, configure the `.env` file and retry.
-
 
 #### Environment Variables
 - All
   - `DATABASE_URL`: _`postgresql://username:password@host:port/database`_
+  - `REDIS_URL`: _`redis://username:password@hostname:port/database_number`_
 
 - Development
   - `TRUSTED_IP`: _`172.17.42.1`_ ([Better Errors](//github.com/charliesome/better_errors): [Optional](//github.com/charliesome/better_errors#security))
