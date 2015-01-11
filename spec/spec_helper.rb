@@ -1,4 +1,5 @@
 require 'vcr'
+require 'sidekiq/testing'
 
 ENV['STRIPE_KEY'] ||= '<STRIPE_KEY>'
 ENV['STRIPE_SECRET'] ||= '<STRIPE_SECRET>'
@@ -65,12 +66,29 @@ RSpec.configure do |config|
 
   # Add VCR to all tests
   config.around(:each) do |example|
-    options = example.metadata[:vcr] || { record: :none }
+    options = example.metadata[:vcr] || {}
     if options[:record] == :skip
       VCR.turned_off(&example)
     else
       name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.gsub(/[^\w\/]+/, '_')
       VCR.use_cassette(name, options, &example)
+    end
+  end
+
+  config.before(:each) do |_example_method|
+    # Clears out the jobs for tests using the fake testing
+    Sidekiq::Worker.clear_all
+  end
+
+  config.around(:each) do |example|
+    if example.metadata[:sidekiq] == :fake
+      Sidekiq::Testing.fake!(&example)
+    elsif example.metadata[:sidekiq] == :inline
+      Sidekiq::Testing.inline!(&example)
+    elsif example.metadata[:type] == :feature
+      Sidekiq::Testing.inline!(&example)
+    else
+      Sidekiq::Testing.fake!(&example)
     end
   end
 end

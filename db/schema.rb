@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116010044) do
+ActiveRecord::Schema.define(version: 20150109011146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "charities", force: true do |t|
+  create_table "charities", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "url"
@@ -28,25 +28,26 @@ ActiveRecord::Schema.define(version: 20141116010044) do
     t.datetime "image_updated_at"
   end
 
-  create_table "pledges", force: true do |t|
+  create_table "pledges", force: :cascade do |t|
     t.integer  "referrer_id"
     t.integer  "user_id"
     t.integer  "action"
     t.datetime "expiration"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.decimal  "tip_percentage"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "tip_percentage"
     t.integer  "amount"
-    t.string   "stripe_charge_id"
-    t.integer  "status"
+    t.string   "stripe_authorization_charge_id"
     t.integer  "charity_id"
+    t.string   "stripe_charge_id"
+    t.integer  "state"
   end
 
   add_index "pledges", ["charity_id"], name: "index_pledges_on_charity_id", using: :btree
   add_index "pledges", ["referrer_id"], name: "index_pledges_on_referrer_id", using: :btree
   add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",              null: false
     t.string   "crypted_password",   null: false
     t.string   "salt",               null: false

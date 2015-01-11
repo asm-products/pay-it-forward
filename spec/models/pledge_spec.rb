@@ -61,22 +61,141 @@ RSpec.describe Pledge, type: :model do
     end
   end
 
-  describe 'stripe_charge' do
+  describe 'stripe_authorization_charge' do
     let(:pledge) { create(:pledge) }
 
     it 'retrieves ::Stripe::Charge when accessed' do
       pledge.authorize!
-      expect(pledge.stripe_charge).to_not be nil
+      expect(pledge.stripe_authorization_charge).to_not be nil
     end
   end
 
-  describe 'authorize!' do
-    let(:pledge) { create(:pledge) }
+  describe 'states' do
+    context 'when created' do
+      let(:pledge) { create(:pledge) }
 
-    it 'creates a stripe_charge' do
-      pledge.authorize!
-      expect(pledge.stripe_charge).to_not be nil
-      expect(pledge.stripe_charge.captured).to be false
+      describe 'authorize' do
+        it 'transitions to authorized' do
+          expect { pledge.authorize! }.to change { pledge.state }.from('created').to('authorized')
+        end
+      end
+
+      describe 'capture' do
+        it 'fails to transition' do
+          expect { pledge.capture! }.to raise_error
+        end
+      end
+
+      describe 'refund' do
+        it 'fails to transition' do
+          expect { pledge.refund! }.to raise_error
+        end
+      end
+    end
+
+    context 'when authorized' do
+      let(:pledge) { create(:pledge, :authorized) }
+
+      describe 'authorize' do
+        it 'fails to transition' do
+          expect { pledge.authorize! }.to raise_error
+        end
+      end
+
+      describe 'capture' do
+        it 'transitions to captured' do
+          expect { pledge.capture! }.to change { pledge.state }.from('authorized').to('captured')
+        end
+      end
+
+      describe 'refund' do
+        it 'transitions to refunded' do
+          expect { pledge.refund! }.to change { pledge.state }.from('authorized').to('refunded')
+        end
+      end
+    end
+
+    context 'when captured' do
+      let(:pledge) { create(:pledge, :captured) }
+
+      describe 'authorize' do
+        it 'fails to transition' do
+          expect { pledge.authorize! }.to raise_error
+        end
+      end
+
+      describe 'capture' do
+        it 'fails to transition' do
+          expect { pledge.capture! }.to raise_error
+        end
+      end
+
+      describe 'refund' do
+        it 'transitions to refunded' do
+          expect { pledge.refund! }.to change { pledge.state }.from('captured').to('refunded')
+        end
+      end
+    end
+
+    context 'when refunded' do
+      let(:pledge) { create(:pledge, :capture_refunded) }
+
+      describe 'authorize' do
+        it 'fails to transition' do
+          expect { pledge.authorize! }.to raise_error
+        end
+      end
+
+      describe 'capture' do
+        it 'fails to transition' do
+          expect { pledge.capture! }.to raise_error
+        end
+      end
+
+      describe 'refund' do
+        it 'fails to transition' do
+          expect { pledge.refund! }.to raise_error
+        end
+      end
+    end
+  end
+
+  describe 'transitions' do
+    describe 'authorize' do
+      let(:pledge) { create(:pledge) }
+
+      it 'creates authorization charge' do
+        expect { pledge.authorize! }.to change { pledge.stripe_authorization_charge_id }.from(nil)
+      end
+    end
+
+    describe 'capture' do
+      let(:pledge) { create(:pledge, :authorized) }
+
+      it 'refunds authorization charge' do
+        expect { pledge.capture! }.to change { pledge.stripe_authorization_charge.refunds.count }.from(0).to(1)
+      end
+      it 'creates capture charge' do
+        expect { pledge.capture! }.to change { pledge.stripe_charge_id }.from(nil)
+      end
+    end
+
+    describe 'refund' do
+      context 'from authorized' do
+        let(:pledge) { create(:pledge, :authorized) }
+
+        it 'refunds authorization charge' do
+          expect { pledge.refund! }.to change { pledge.stripe_authorization_charge.refunds.count }.from(0).to(1)
+        end
+      end
+
+      context 'from captured' do
+        let(:pledge) { create(:pledge, :captured) }
+
+        it 'refunds capture charge' do
+          expect { pledge.refund! }.to change { pledge.stripe_charge.refunds.count }.from(0).to(1)
+        end
+      end
     end
   end
 end

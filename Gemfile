@@ -5,6 +5,7 @@ ruby '2.1.3'
 gem 'rails', '4.2.0'
 gem 'puma'
 gem 'pg'
+gem 'sidekiq'
 
 # Assets
 gem 'sass-rails'
@@ -22,6 +23,7 @@ gem 'asset_sync'
 gem 'turbolinks'
 gem 'rails-html-sanitizer'
 gem 'virtus'
+gem 'aasm'
 
 # Helpers
 gem 'flutie'

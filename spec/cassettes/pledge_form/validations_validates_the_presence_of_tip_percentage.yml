@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 29 Dec 2014 03:37:26 GMT
+      - Sat, 10 Jan 2015 23:01:16 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_kMjk8bYM0jexZOad
+      - req_02zGq4w31RpjcdXH
       Stripe-Version:
       - '2014-10-07'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15EuLS4AnjI1zHWBoNDmHiCM",
+          "id": "tok_15JYEK4AnjI1zHWBv0bo4XtB",
           "livemode": false,
-          "created": 1419824246,
+          "created": 1420930876,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15EuLS4AnjI1zHWBLhOpQ8Gp",
+            "id": "card_15JYEK4AnjI1zHWBPYvnyaAr",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -89,5 +89,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Mon, 29 Dec 2014 03:37:26 GMT
+  recorded_at: Sat, 10 Jan 2015 23:01:16 GMT
 recorded_with: VCR 2.9.3

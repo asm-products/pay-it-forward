@@ -8,5 +8,33 @@ FactoryGirl.define do
     trait :referrered do
       referrer { create(:pledge) }
     end
+
+    trait :authorized do
+      after(:create) do |pledge|
+        pledge.authorize!
+      end
+    end
+
+    trait :captured do
+      after(:create) do |pledge|
+        pledge.authorize!
+        pledge.capture!
+      end
+    end
+
+    trait :authorize_refunded do
+      after(:create) do |pledge|
+        pledge.authorize!
+        pledge.refund!
+      end
+    end
+
+    trait :capture_refunded do
+      after(:create) do |pledge|
+        pledge.authorize!
+        pledge.capture!
+        pledge.refund!
+      end
+    end
   end
 end

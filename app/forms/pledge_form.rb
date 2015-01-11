@@ -43,6 +43,12 @@ class PledgeForm
     @referrer
   end
 
+  def charity=(new_charity)
+    @charity = new_charity
+    self.charity_id = new_charity.nil? ? nil : new_charity.id
+    @charity
+  end
+
   def user=(new_user)
     @user = new_user
     self.user_id = new_user.nil? ? nil : new_user.id
@@ -52,17 +58,26 @@ class PledgeForm
   def save
     return false unless valid?
 
-    self.user ||= User.create_by_pledge_form!(name: name, email: email,
-                                              stripe_auth_token: stripe_auth_token)
+    self.user ||= User.create_by_pledge_form!(
+      name: name,
+      email: email,
+      stripe_auth_token: stripe_auth_token
+      )
 
     if user.stripe_customer.nil?
       user.register_stripe_customer(stripe_auth_token)
       user.save!
     end
 
-    @pledge = Pledge.create!(user: user, charity: charity, amount: amount, tip_percentage: tip_percentage, referrer: referrer)
-    @pledge.authorize!
+    @pledge = Pledge.create!(
+      user: user,
+      charity: charity,
+      amount: amount,
+      tip_percentage: tip_percentage,
+      referrer: referrer
+     )
 
+    AuthorizePledgeJob.perform_later(@pledge)
     true
   end
 
