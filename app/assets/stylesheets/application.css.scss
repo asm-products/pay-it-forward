@@ -11,11 +11,19 @@
  * file per style scope.
  *
  */
+@import "bootswatch/paper/variables";
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
+
+@import "bootswatch/paper/bootswatch";
+
 @import "font-awesome";
 @import "paper-collapse";
+
 
 /*!
  * Forked from Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
