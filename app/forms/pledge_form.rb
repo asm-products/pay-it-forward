@@ -85,7 +85,7 @@ class PledgeForm
 
   def stripe_auth_token_must_be_valid
     if stripe_auth_token.match(/^tok_/).nil? || stripe_auth_token.size > 255
-      return errors.add(:stripe_auth_token, 'Stripe token is Invalid')
+      return errors.add(:stripe_auth_token, :invalid)
     end
 
     return unless errors.empty?
@@ -94,13 +94,13 @@ class PledgeForm
     begin
       Stripe::Token.retrieve(stripe_auth_token)
     rescue Stripe::InvalidRequestError
-      errors.add(:stripe_auth_token, 'Stripe token is Invalid')
+      errors.add(:stripe_auth_token, :invalid)
     rescue Stripe::AuthenticationError
-      errors.add(:stripe_auth_token, 'Authentication with Stripe failed')
+      errors.add(:stripe_auth_token, :failed_to_authenticate)
     rescue Stripe::APIConnectionError
-      errors.add(:stripe_auth_token, 'Network communication with Stripe failed')
+      errors.add(:stripe_auth_token, :network_error)
     rescue Stripe::StripeError
-      errors.add(:stripe_auth_token, 'Something with Stripe went wrong')
+      errors.add(:stripe_auth_token, :general_error)
     end
   end
 
@@ -108,7 +108,7 @@ class PledgeForm
     return if user.present?
 
     if User.find_by_email(email)
-      errors.add(:email, 'User with this email already exists')
+      errors.add(:email, :already_used)
     end
   end
 
@@ -116,7 +116,7 @@ class PledgeForm
     return if user.nil?
 
     if user.email != email
-      errors.add(:email, 'Email does not match the logged in user')
+      errors.add(:email, :does_not_match)
     end
   end
 end
