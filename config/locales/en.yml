@@ -20,4 +20,35 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activemodel:
+    attributes:
+      pledge_form:
+        amount: "Donation Amount"
+        tip_percentage: "Tip Percentage"
+        stripe_auth_token: "Stripe Authorization"
+        name: "Full Name"
+        email: "Email Address"
+        charity_id: "Charity"
+    errors:
+      models:
+        pledge_form:
+          attributes:
+            charity:
+              blank: "is required"
+            amount:
+              blank: "is required"
+            tip_percentage:
+              blank: "is required"
+            stripe_auth_token:
+              blank: "is required"
+              invalid: "is invalid"
+              failed_to_authenticate: "failed to authenticate"
+              network_error: "failed to connect to stripe"
+              general_error: "something went wrong"
+            name:
+              blank: "is required"
+            email:
+              blank: "is required"
+              already_used: "is taken"
+              does_not_match: "does not match currently signed in user"
+              
