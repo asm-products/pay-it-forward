@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.1.3'
 
 # Core
@@ -31,13 +32,15 @@ gem 'jbuilder'
 gem 'high_voltage'
 gem 'wicked'
 gem 'country_select'
+gem 'possum', git: 'https://github.com/sirwolfgang/possum', branch: 'develop'
+gem 'rails-assets-handlebars'
 
 # Users
 gem 'sorcery'
 gem 'email_validator'
 
 # Payments
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 
 group :development do
   gem 'quiet_assets'
