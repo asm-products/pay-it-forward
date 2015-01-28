@@ -8,8 +8,10 @@
     
     <% if ENV['STRIPE_KEY'].include? 'test' %>
       <div class="row">
-        <div class="col-md-12 alert alert-warning">
-          <p class="text-center">Stripe Test Mode</p>
+        <div class="col-md-12">
+          <div class="alert alert-warning">
+            <p class="text-center">Stripe Test Mode</p>
+          </div>
         </div>
       </div>
     <% end %>
@@ -28,6 +30,18 @@
           </div>
         </div>
       </div>
+    
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger <%= @pledge_form.errors.full_messages.any? ? '' : 'hidden' %>" id="payment-errors" role="alert">
+            <% if @pledge_form.errors.full_messages.any? %>
+              <% @pledge_form.errors.full_messages.each do |error_message| %>
+                <%= error_message %> <br />
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-6">
@@ -38,8 +52,6 @@
             </div>
 
             <div class="panel-body form-horizontal">
-              
-              <div class="alert alert-danger hidden" id="payment-errors" role="alert"></div>
 
               <!-- Card Holder Name -->
               <div class="form-group">
@@ -143,14 +155,14 @@
         </div>
       </div>
     
-    <div class="row">
-      <div class="col-md-12">
-        <%= f.submit 'Authorize', class: 'btn btn-success btn-block' %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= f.submit 'Authorize', class: 'btn btn-success btn-block' %>
+        </div>
       </div>
-    </div>
     
-    <br />
+    </div>
 
-  </div>
+    <br />
 
 <% end %>
