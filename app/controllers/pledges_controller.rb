@@ -20,9 +20,9 @@ class PledgesController < ApplicationController
 
     respond_to do |format|
       if @pledge_form.save
-        format.html { redirect_to @pledge_form.pledge }
+        format.json { render json: {}, status: :created }
       else
-        format.html { render :new }
+        format.json { render json: @pledge_form.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
