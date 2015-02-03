@@ -1,4 +1,4 @@
-<%= form_for @pledge_form, url: pledges_path, method: :post, remote: true, html: {:'data-type' => 'json'}, authenticity_token: '{{pledge_form.authenticity_token}}' do |f| %>
+<%= form_for @pledge_form, url: pledges_path, method: :post, html: {:'data-type' => 'json'}, authenticity_token: '{{pledge_form.authenticity_token}}' do |f| %>
   <%= f.hidden_field :stripe_auth_token %>
   <%= f.hidden_field :charity_id, value: '{{pledge_form.charity_id}}' %>
   <%= f.hidden_field :amount, value: '{{pledge_form.amount}}' %>

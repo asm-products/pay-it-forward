@@ -9,9 +9,8 @@ class PledgesController < ApplicationController
   # GET /pledge/new
   def new
     charity = Charity.find_by_id(params[:charity_id])
-    redirect_to charities_path if charity.nil?
-
-    @pledge_form = PledgeForm.new(charity: charity, user: current_user)
+    return redirect_to charities_path if charity.nil?
+    session[:pledge_form] = ActiveSupport::JSON.encode(PledgeForm.new(charity: charity))
   end
 
   # POST /pledge

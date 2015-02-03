@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post 'sign_out' => 'user_sessions#destroy', as: nil
 
   resource :user, only: [:new, :create]
-  resources :pledges
+  resources :pledges do
+    post 'new' => 'pledges#new', on: :collection, as: nil
+  end
   resources :charities
 
   # Pages
