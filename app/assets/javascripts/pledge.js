@@ -2,26 +2,24 @@
   $(document).on('possum:ready', function () {
     var $form = $('#new_pledge_form');
     
-    $form.on('ajax:before', function(){
-      // block rails.js remote AJAJ unless ready
-      return ($form.find('#pledge_form_stripe_auth_token').val().length !== 0);
-    });
-    
     $form.on('ajax:success', function(data, status, xhr){
-      console.log('success');
+      $form.find('#payment-errors').html('').addClass('hidden');
+      Turbolinks.visit(status.url);
     });
     
     $form.on('ajax:error', function(xhr, status, error){
-      $form.find('#payment-errors').text(status.responseJSON.join("\n")).removeClass('hidden');
+      $form.find('#payment-errors').html(status.responseJSON.join('<br>')).removeClass('hidden');
+      $.rails.enableFormElements($form);
     });
     
     var stripeResponseHandler = function (status, response) {
       if (response.error) {
         $form.find('#pledge_form_stripe_auth_token').val(null);
-        $form.find('#payment-errors').text(response.error.message).removeClass('hidden');
+        $form.find('#payment-errors').html(response.error.message).removeClass('hidden');
+        $.rails.enableFormElements($form);
       } else {
         $form.find('#pledge_form_stripe_auth_token').val(response.id);
-        $form.trigger('submit.rails');
+        $.rails.handleRemote($form);
       }
     };
 
@@ -153,6 +151,7 @@
       $('#new_pledge').bootstrapValidator('revalidateField', 'address_zip');
     }).on('success.form.bv', function(event) {
       $form.find('#pledge_form_stripe_auth_token').val(null);
+      $.rails.disableFormElements($form);
       Stripe.card.createToken($form, stripeResponseHandler);
 
       return false;
