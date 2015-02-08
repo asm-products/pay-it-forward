@@ -32,8 +32,11 @@ gem 'jbuilder'
 gem 'high_voltage'
 gem 'wicked'
 gem 'country_select'
-gem 'possum', git: 'https://github.com/sirwolfgang/possum', branch: 'develop'
+
+# Possum
+gem 'possum', git: 'https://github.com/o-possum/possum'
 gem 'rails-assets-handlebars'
+gem 'rails-assets-webcomponentsjs'
 
 # Users
 gem 'sorcery'
