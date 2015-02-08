@@ -35,6 +35,7 @@ gem 'country_select'
 
 # Possum
 gem 'possum', git: 'https://github.com/o-possum/possum'
+#gem 'possum', path: '~/workspace/possum'
 gem 'rails-assets-handlebars'
 gem 'rails-assets-webcomponentsjs'
 

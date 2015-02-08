@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/o-possum/possum
-  revision: aa1a4c94518ff8c108e32cfbc5bfcda893c03ae7
+  revision: ce197aa236b4b7450cac9b236bc6cfe3710b5c3f
   specs:
     possum (0.1.1)
       rails (~> 4.2.0)
@@ -206,7 +206,7 @@ GEM
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
-    globalid (0.3.0)
+    globalid (0.3.2)
       activesupport (>= 4.1.0)
     high_voltage (2.2.1)
     hike (1.2.3)
