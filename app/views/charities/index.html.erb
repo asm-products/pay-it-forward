@@ -33,7 +33,7 @@
           <div class="caption">
             <h3><%= charity.name %></h3>
             <p><%= charity.description %></p>
-            <p><%= link_to 'Choose', new_pledge_path(@profile, charity_id: charity.id), class: 'btn btn-primary' %></p>
+            <p><%= button_to 'Choose', new_pledge_path, params: {charity_id: charity.id}, class: 'btn btn-primary' %></p>
           </div>
         </div>
       </div>
